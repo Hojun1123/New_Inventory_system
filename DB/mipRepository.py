@@ -6,11 +6,6 @@ def getTypes():
     connection = None
     try:
         connection = db.connect(
-            host="bangwol08.iptime.org",
-            user="inven",
-            port=50000,
-            password="manager123!@#",
-            database="InventoryManagement"
         )
         cursor = connection.cursor()
         sql = "SELECT * FROM MIP;"
