@@ -26,6 +26,15 @@
     </script>
 {% endif %}
 
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+    {% endif %}
+{% endwith %}
+
 <nav class="navbar navbar-expand-md navbar-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="dailylist_worker">SJA.inc</a>
@@ -39,7 +48,7 @@
                     <a class="nav-link" href="dailylist_worker">당일 조회</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link current-page-text" href="readBarcode">바코드 입력</a>
+                    <a class="nav-link current-page-text" href="/readBarcode">바코드 입력</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="releaseEngine">엔진 출고</a>

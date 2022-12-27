@@ -1,14 +1,29 @@
 import pymysql as db
-
+from DB.dbConnection import dbInfo
 def EngineRepository(act, data):
     result = None
     connection = None
+    cursor = None
 
     def insert():
+        sql = ("INSERT INTO ENGINE" +
+              " (barcode, mip, type, input_date, packing_date, group_id, location, errorflag, exp) " +
+              "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);")
+        try:
+            cursor.executemany(sql, data)
+            connection.commit()
+        except:
+            return -2
         return 1
 
     def select():
-        return -1
+        sql = "SELECT * FROM ENGINE;"
+        try:
+            cursor.execute(sql)
+            result = cursor.fetchall()
+        except:
+            return -1
+        return 1
 
     def update():
         return -1
@@ -18,11 +33,11 @@ def EngineRepository(act, data):
 
     try:
         connection = db.connect(
-            host="bangwol08.iptime.org",
-            user="inven",
-            port=50000,
-            password="manager123!@#",
-            database="InventoryManagement"
+            host=dbInfo[0],
+            user=dbInfo[1],
+            port=dbInfo[2],
+            password=dbInfo[3],
+            database=dbInfo[4]
         )
         cursor = connection.cursor()
         if act == 'i':

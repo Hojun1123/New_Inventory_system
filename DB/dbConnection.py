@@ -1,26 +1,8 @@
 import pymysql as db
 
-
-def test():
-    result = None
-    connection = None
-    try:
-        connection = db.connect(
-        )
-        cursor = connection.cursor()
-
-        #sql문
-        sql = ""
-        print(cursor)
-    except:
-        print("DB 연결 오류")
-    finally:
-        if cursor:
-            cursor.close()
-        if connection:
-            connection.close()
-        print("DB close")
-    return result
+#### db 연결 정보 ######
+dbInfo = []
+########
 
 '''
 TABLE CREATION
