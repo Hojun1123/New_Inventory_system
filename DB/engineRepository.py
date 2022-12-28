@@ -20,10 +20,18 @@ def EngineRepository(act, data):
         sql = "SELECT * FROM ENGINE;"
         try:
             cursor.execute(sql)
-            result = cursor.fetchall()
+            return cursor.fetchall()
         except:
             return -1
-        return 1
+
+    def selectByDate():
+        sql = "SELECT * FROM ENGINE WHERE input_date<=%s;"
+        # data = (start_date, end_date)
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
 
     def update():
         return -1
@@ -46,8 +54,10 @@ def EngineRepository(act, data):
             result = select()
         elif act == 'u':
             result = update()
-        else:
+        elif act == 'd':
             result = delete()
+        elif act == 'sd':
+            result = selectByDate()
     except:
         print("DB 연결 오류")
         return -1
