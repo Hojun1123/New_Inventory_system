@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>재고 관리 프로그램</title>
 
-    <link href="/css/style.css" rel="stylesheet"/>
+    <link href="../static/css/style.css" rel="stylesheet"/>
     <!--dropdown-->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <!--세션유무확인-->
@@ -25,6 +25,14 @@
     </script>
 {% endif %}
 
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+    {% endif %}
+{% endwith %}
+
 <nav class="navbar navbar-expand-md navbar-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="dailylist_worker">SJA.inc</a>
@@ -38,10 +46,10 @@
                     <a class="nav-link" href="dailylist_worker">당일 조회</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="readBarcode">바코드 입력</a>
+                    <a class="nav-link" href="/readBarcode">바코드 입력</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link current-page-text" href="releaseEngine">엔진 출고</a>
+                    <a class="nav-link current-page-text" href="/releaseEngine">엔진 출고</a>
                 </li>
             </ul>
         </div>
@@ -65,7 +73,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="card-body p-sm-4 text-black m-3">
 
-                                    <form action="/releaseEngine" method="post">
+                                    <form action="/engine/releaseEngine" method="post">
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                             <span class="h1 fw-bold mb-0">바코드 입력</span>
@@ -82,19 +90,15 @@
                                         <div class="pt-1 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">출고</button>
                                         </div>-->
+                                        <div class="pt-1 mb-4">
+                                            <button class="btn btn-dark btn-lg btn-block" type="submit">출고</button>
+                                        </div>
+                                        <div class="pt-1 mb-4">
+                                            <button class="btn btn-dark btn-lg btn-block" type="button"
+                                                    onclick="location.href='/Controller'">홈화면
+                                            </button>
+                                        </div>
                                     </form>
-
-                                    <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="button"
-                                                onclick="location.href='/release'">불출
-                                        </button>
-                                    </div>
-                                    <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="button"
-                                                onclick="location.href='/Controller'">홈화면
-                                        </button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>

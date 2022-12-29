@@ -6,7 +6,15 @@ def OutputEngineRepository(act, data):
     cursor = None
 
     def insert():
-        return -1
+        sql = ("INSERT INTO OUTPUTENGINE" +
+              " (barcode, mip, type, input_date, packing_date, output_date, errorflag, exp, destination) " +
+              "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);")
+        try:
+            cursor.execute(sql, data)
+            connection.commit()
+        except:
+            return -1
+        return 1
 
     def select():
         sql = "SELECT * FROM OUTPUTENGINE;"

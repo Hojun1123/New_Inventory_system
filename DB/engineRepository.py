@@ -33,11 +33,27 @@ def EngineRepository(act, data):
         except:
             return -1
 
+    def selectValidEngine():
+        sql = "SELECT barcode, mip, type, input_date, packing_date, errorflag, exp FROM ENGINE;"
+        try:
+            cursor.execute(sql)
+            return cursor.fetchall()
+        except:
+            return -1
+        return 1
+
+
     def update():
         return -1
 
     def delete():
-        return -1
+        sql = "DELETE FROM ENGINE WHERE barcode=%s;"
+        try:
+            cursor.execute(sql, data)
+            connection.commit()
+        except:
+            return -1
+        return 1
 
     try:
         connection = db.connect(
@@ -58,6 +74,8 @@ def EngineRepository(act, data):
             result = delete()
         elif act == 'sd':
             result = selectByDate()
+        elif act == 'checkBarcode':
+            result = selectValidEngine()
     except:
         print("DB 연결 오류")
         return -1
