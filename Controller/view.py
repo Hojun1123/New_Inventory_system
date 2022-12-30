@@ -18,3 +18,14 @@ def generateReports():
         table = generateReport.getReport(startdate, enddate)
         return render_template("/report.html", table=table, startdate=str(startdate), enddate=str(enddate))
 
+
+@viewController.route("/allEngines", methods=['GET', 'POST'])
+def allEngines():
+    if request.method == 'GET':
+        return render_template("/inventory.html", table="")
+    else:
+        startdate = request.form.get("startdate")
+        enddate = request.form.get("enddate")
+        return render_template("/inventory.html", table="", startdate=str(startdate), enddate=str(enddate))
+
+
