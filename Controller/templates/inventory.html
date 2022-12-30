@@ -145,7 +145,7 @@
 </nav>
 
 <!--datepicker-->
-<form action="/inventory" class="datepicker-calendar-container my-3" method="post" style="min-width: 1200px;">
+<form action="/view/allEngines" class="datepicker-calendar-container my-3" method="post" style="min-width: 1200px;">
     <div class="d-flex flex-wrap my-2">
         <div class="input-group date datepicker-calendar">
             <input name="startdate" type="text" class="form-control" value="{{ startdate }}" id="startDatepicker"
@@ -209,18 +209,12 @@
             </th>
             </thead>
             <tbody>
-            {% for a in excelList %}
+            {% for row in table %}
                 <tr>
                     <th scope="row"></th>
-                    {% for b in a %}
+                    {% for cell in row %}
 
-                        {% if session["userid"] == "manager" %}
-                            <td class="editable">{{ b }}</td>
-                        {% endif %}
-
-                        {% if session["userid"] == "user" %}
-                            <td contenteditable="false">{{ b }}</td>
-                        {% endif %}
+                        <td>{{ cell }}</td>
 
                     {% endfor %}
                 </tr>
