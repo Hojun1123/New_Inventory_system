@@ -30,7 +30,8 @@
 
 <nav class="navbar navbar-expand-sm navbar-light border-bottom navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="main">SJA.inc</a>
+        <!-- (nav수정)SJA.inc 변경완료-->
+        <a class="navbar-brand" href="/view">SJA.inc</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,7 +39,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="current-page-text nav-link" href="main">메인</a>
+                    <!-- (nav수정)'메인' 변경완료 -->
+                    <a class="current-page-text nav-link" href="/view">메인</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="dailylist">당일 조회</a>
@@ -50,7 +52,8 @@
                     <a class="nav-link" href="inventoryPayment">재고수불부</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="report">일자별 수불</a>
+                    <!-- (nav수정)일자별수불 변경완료-->
+                    <a class="nav-link" href="/view/report">일자별 수불</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button"
@@ -58,7 +61,8 @@
                         데이터 설정
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item nav-dropdown-item" href="addMIP">MIP 추가</a></li>
+                        <!-- (nav수정)MIP 추가만 완료 -->
+                        <li><a class="dropdown-item nav-dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
                         <li><a class="dropdown-item nav-dropdown-item" href="setInvalidEngine">불량 엔진 추가</a></li>
                     </ul>
                 </li>
@@ -68,7 +72,8 @@
             <button type="button" onclick="location.href='/refresh'" class="reload-btn">
                 <img src="/assets/img/reload.png" alt="새로고침">
             </button>
-            <button class="logout-btn" onclick="location.href='/logout'">log out</button>
+            <!-- (nav수정)로그아웃 시 로그인 화면으로 변경완료-->
+            <button class="logout-btn" onclick="location.href='/user/login'">log out</button>
         </div>
     </div>
 </nav>
