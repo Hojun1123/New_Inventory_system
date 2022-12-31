@@ -1,5 +1,4 @@
 from Service.Engine import addMIP, getMIP
-import DB.mipRepository as dao
 from flask import Blueprint, Flask, render_template, request, flash
 
 mipController = Blueprint("mip", __name__, url_prefix="/mip")
