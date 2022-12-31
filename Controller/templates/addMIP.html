@@ -20,14 +20,14 @@
     </script>
 {% endif %}
 
-<!--관리자세션확인-->
+<!--관리자세션확인--><!--
 {% if session["userid"] != 'manager' %}
     <script>
         alert("해당페이지는 관리자만 접근가능합니다.")
         location.href = "/"
     </script>
 {% endif %}
-
+-->
 <!--login.html 에서 nav bar 제거 및 login section 높이 수정-->
 <nav class="navbar navbar-expand-md navbar-light border-bottom navbar-custom">
     <div class="container-fluid">
@@ -83,7 +83,7 @@
                         <div class="d-flex align-items-center">
                             <div class="card-body p-sm-4 text-black m-3">
 
-                                <form action="/addMIP" method="post">
+                                <form action="/mip/addMIP" method="post">
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                         <span class="h1 fw-bold mb-0">MIP 추가</span>
