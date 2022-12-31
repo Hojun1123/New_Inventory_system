@@ -98,7 +98,13 @@
         location.href = "/"
     </script>
 {% endif %}
-
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+    {% endif %}
+{% endwith %}
 <nav class="navbar navbar-expand-md navbar-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="main">SJA.inc</a>
