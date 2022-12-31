@@ -25,16 +25,14 @@ def getAllEngines(start, end):
         barcode, mip, types, inputDate, packingDate, gid, location, errorFlag, exp = i
         outputDate = ""
         errorFlag = "불량엔진" if errorFlag > 0 else ""
-        engineList.append([inputDate, barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate), errorFlag, exp])
+        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate), errorFlag, exp])
     for i in oenData:
         barcode, mip, types, inputDate, packingDate, outputDate, errorFlag, exp, destination = i
-        gid = ""
-        location = ""
         errorFlag = "불량엔진" if errorFlag > 0 else ""
-        engineList.append([inputDate, barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate), errorFlag, exp])
+        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate), errorFlag, exp])
 
     #최근입고순정렬 > 타입별정렬 > mip별 정렬
-    engineList = sorted(engineList, key=lambda x: (-x[0], x[3], x[2]))
+    engineList = sorted(engineList, key=lambda x: (x[3], x[2], x[1]))
     return engineList
 
 def stringToDate(s):
