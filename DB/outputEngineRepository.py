@@ -20,10 +20,9 @@ def OutputEngineRepository(act, data):
         sql = "SELECT * FROM OUTPUTENGINE;"
         try:
             cursor.execute(sql)
-            result = cursor.fetchall()
+            return cursor.fetchall()
         except:
             return -1
-        return 1
     def selectByDate():
         sql = "SELECT * FROM OUTPUTENGINE WHERE output_date>=%s AND input_date<=%s"
         try:
