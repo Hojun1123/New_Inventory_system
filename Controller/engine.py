@@ -4,6 +4,8 @@ from Service.Engine import addEngines
 from Service.Engine import releaseEngines
 from Service.Engine import readAllEngines
 from Service.Engine import editEngine
+from Service.Engine import deleteEngine
+
 engineController = Blueprint("engine", __name__, url_prefix="/engine")
 
 
@@ -13,7 +15,7 @@ def addEngine():
         r = addEngines.inputEngine(request.form.get("barcode"))
         print(r)
         if r == -1:
-            flash("[ERROR] 데이터 베이스 연결 오류")
+            flash("[ERROR] 데이터 베이스 오류")
         elif r == -2:
             flash("[ERROR] 중복 또는 잘못된 데이터 입력")
         elif r == -3:
@@ -30,7 +32,7 @@ def releaseEngine():
         r = releaseEngines.outputEngine(data, session['ValidEngines'])
         outputEngines = session['outputEngines']
         if r == -1:
-            flash("[ERROR] 데이터 베이스 연결 오류")
+            flash("[ERROR] 데이터 베이스 오류")
             outputEngines.append(data + " : DB에러")
         elif r == -2:
             flash("[ERROR] 존재하지않는 바코드 입니다.")
@@ -45,7 +47,7 @@ def releaseEngine():
     else:
         r = releaseEngines.getValidEngines()
         if r == -1:
-            flash("[ERROR] 데이터 베이스 연결 오류")
+            flash("[ERROR] 데이터 베이스 오류")
             return render_template("/releaseEngine.html")
         session['outputEngines'] = []   # 사용자에게 불출한 엔진과 처리결과를 돌려주기 위한 리스트
         session['ValidEngines'] = r
@@ -57,7 +59,7 @@ def editEngines():
     if request.method == 'GET':
         table = readAllEngines.selectAllEngines()
         if table == -1:
-            table = "[ERROR] 데이터 베이스 연결 오류"
+            flash("[ERROR] 데이터 베이스 오류")
         return render_template("/editEngine.html", table=table)
 
 
@@ -66,7 +68,7 @@ def editForm():
     if request.method == 'GET':
         result = editEngine.editEngineData(request.args.get('eid'))
         if result == -1:
-            result = "[ERROR] 데이터 베이스 연결 오류"
+            flash("[ERROR] 데이터 베이스 오류")
         else:
             return render_template("/editForm.html", engine=result[0])
     else:
@@ -79,11 +81,28 @@ def editForm():
         errorflag = request.form.get('errorflag')
         exp = request.form.get('exp')
         result = editEngine.editProcess([eid,  mip, typ, input_date, packing_date, locaion, errorflag, exp])
-        if result == -1 or result == -3:
-            result = "[ERROR] 데이터 베이스 연결 오류"
+        if result == -1:
+            flash("[ERROR] 데이터 베이스 오류")
         elif result == -2:
-            result = "[ERROR] 올바르지 않은 데이터 형식"
+            flash("[ERROR] 올바르지 않은 데이터")
+        else:
+            flash("정상적으로 수정되었습니다.")
+        result = editEngine.editEngineData(eid)
+        if result == -1:
+            flash("[ERROR] 데이터 베이스 오류2")
         else:
             return render_template("/editForm.html", engine=result[0])
 
+
+@engineController.route("/deleteProcess")
+def deleteProcess():
+    result = deleteEngine.deleteProcess(request.args.get('eid'))
+    if result == -1:
+        flash("[ERROR] 엔진삭제, 데이터 베이스 오류")
+    else:
+        flash("정상적으로 삭제되었습니다.")
+    table = readAllEngines.selectAllEngines()
+    if table == -1:
+        flash("[ERROR] 테이블로드, 데이터 베이스 오류")
+    return render_template("/editEngine.html", table=table)
 
