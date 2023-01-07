@@ -118,11 +118,11 @@
             </th>
             </thead>
             <tbody style="font-size: 12px">
-            {% for idx in range(0, inputlen) %}
+            {% for row in inputTable %}
                 <tr>
-                    <th scope="row">{{ idx + 1 }}</th>
-                    {% for data in inputList[idx] %}
-                        <td>{{ data }}</td>
+                    <th scope="row">3</th>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
@@ -162,15 +162,14 @@
             </th>
             </thead>
             <tbody style="font-size: 12px">
-            {% for idx2 in range(0, outputlen) %}
+            {% for row in outputTable %}
                 <tr>
-                    <th scope="row">{{ idx2 + 1 }}</th>
-                    {% for data2 in outputList[idx2] %}
-                        <td>{{ data2 }}</td>
+                    <th scope="row">2</th>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
-
             </tbody>
         </table>
     </div>

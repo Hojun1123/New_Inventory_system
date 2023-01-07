@@ -1,6 +1,7 @@
 from flask import Blueprint, Flask, render_template, request
 from Service.View import generateReport
 from Service.View import viewAllEngines
+from Service.View import viewTodayEngines
 viewController = Blueprint("/", __name__, url_prefix="/view")
 
 
@@ -42,5 +43,11 @@ def allEngines():
         elif table == -2:
             table = "[ERROR] 올바르지 않은 날짜 형식입니다."
         return render_template("/inventory.html", table=table, startdate=str(startdate), enddate=str(enddate))
+
+
+@viewController.route("/todayEngines")
+def todayEngines():
+    inputTable, outputTable = viewTodayEngines.getTodayEngines()
+    return render_template("/viewTodayResult.html", inputTable=inputTable, outputTable=outputTable)
 
 
