@@ -69,6 +69,23 @@ def EngineRepository(act, data):
         except:
             return -1
 
+    def selectToday():
+        sql = "SELECT * FROM ENGINE WHERE input_date=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
+    def updateErrorFlag():
+        sql = "UPDATE ENGINE SET errorflag=%s, exp=%s WHERE barcode=%s;"
+        try:
+            a = cursor.execute(sql, data)
+            connection.commit()
+        except:
+            print("u error")
+            return -1
+        return a
 
     try:
         connection = db.connect(
@@ -93,6 +110,10 @@ def EngineRepository(act, data):
             result = selectValidEngine()
         elif act == 'selectById':
             result = selectById()
+        elif act == 'st':
+            result = selectToday()
+        elif act == 'updateErrorFlag':
+            result = updateErrorFlag()
     except:
         print("DB 연결 오류")
         return -1

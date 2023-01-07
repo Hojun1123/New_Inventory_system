@@ -5,6 +5,7 @@ from Service.Engine import releaseEngines
 from Service.Engine import readAllEngines
 from Service.Engine import editEngine
 from Service.Engine import deleteEngine
+from Service.Engine import addErrorEngine
 
 engineController = Blueprint("engine", __name__, url_prefix="/engine")
 
@@ -106,3 +107,17 @@ def deleteProcess():
         flash("[ERROR] 테이블로드, 데이터 베이스 오류")
     return render_template("/editEngine.html", table=table)
 
+
+@engineController.route("/setInvalidEngine", methods=["GET", "POST"])
+def setInvalidEngine():
+    if request.method == 'GET':
+        return render_template("/setInvalidEngine.html")
+    else:
+        eid = request.form.get('eid')
+        exp = request.form.get('exp')
+        result = addErrorEngine.setErrorFlag(eid, exp)
+        if result == -1:
+            flash("[ERROR] 데이터 베이스 오류")
+        elif result == -2 or result == 0:
+            flash("[ERROR] 존재하지 않는 바코드입니다.")
+        return render_template("/setInvalidEngine.html")

@@ -37,6 +37,14 @@ def OutputEngineRepository(act, data):
     def delete():
         return -1
 
+    def selectToday():
+        sql = "SELECT * FROM OUTPUTENGINE WHERE output_date=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
     try:
         connection = db.connect(
             host=dbInfo[0],
@@ -56,6 +64,8 @@ def OutputEngineRepository(act, data):
             result = delete()
         elif act == 'sd':
             result = selectByDate()
+        elif act == 'st':
+            result = selectToday()
     except:
         print("DB 연결 오류")
         return -1
