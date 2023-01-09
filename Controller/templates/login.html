@@ -41,20 +41,6 @@
         {% endif %}
     {% endwith %}
 
-    <!-- worker계정으로 접속했을때 -->
-    {% if session["userid"] ==  "worker" %}
-        <script>
-            location.href = "/dailylist_worker"
-        </script>
-    {% endif %}
-
-    <!-- manager계정 또는 user계정으로 접속했을때 -->
-    {% if session["userid"] == "manager" or session["userid"] == "user" %}
-        <script>
-            location.href = "/Controller"
-        </script>
-    {% endif %}
-
     <section class="vh-100">
         <div class="login-container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">

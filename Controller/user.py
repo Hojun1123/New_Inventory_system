@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, request, session
 from Service.User import login
 
-userController = Blueprint("user", __name__, url_prefix="/user")
+userController = Blueprint("user", __name__, url_prefix="/")
 
 
 # 로그인 페이지
-@userController.route('/login', methods=['GET', 'POST'])
+@userController.route('/', methods=['GET', 'POST'])
 def loginPage():  # put application's code here
     #### db 테스트용
     if request.method == 'POST':
@@ -14,4 +14,6 @@ def loginPage():  # put application's code here
             session['userid'] = result
             return render_template("/main.html")
     else:
+        if len(session) > 0:
+            return render_template("/main.html")
         return render_template("/login.html")
