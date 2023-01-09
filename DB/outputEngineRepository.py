@@ -23,6 +23,7 @@ def OutputEngineRepository(act, data):
             return cursor.fetchall()
         except:
             return -1
+
     def selectByDate():
         sql = "SELECT * FROM OUTPUTENGINE WHERE output_date>=%s AND input_date<=%s"
         try:
@@ -31,6 +32,16 @@ def OutputEngineRepository(act, data):
         except:
             return -1
         return 1
+
+    def selectByDate2():
+        sql = "SELECT * FROM OUTPUTENGINE WHERE output_date>=%s AND input_date<%s"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+        return 1
+
     def update():
         return -1
 
@@ -44,6 +55,24 @@ def OutputEngineRepository(act, data):
             return cursor.fetchall()
         except:
             return -1
+
+    def selectBetweenDateI():
+        sql = "SELECT * FROM OUTPUTENGINE WHERE input_date>=%s AND input_date<=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+        return 1
+
+    def selectBetweenDateO():
+        sql = "SELECT * FROM OUTPUTENGINE WHERE output_date>=%s AND output_date<=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+        return 1
 
     try:
         connection = db.connect(
@@ -64,8 +93,15 @@ def OutputEngineRepository(act, data):
             result = delete()
         elif act == 'sd':
             result = selectByDate()
+        elif act == 'sd2':
+            result = selectByDate2()
         elif act == 'st':
             result = selectToday()
+        elif act == 'betweenDateI':
+            result = selectBetweenDateI()
+        elif act == 'betweenDateO':
+            result = selectBetweenDateO()
+
     except:
         print("DB 연결 오류")
         return -1

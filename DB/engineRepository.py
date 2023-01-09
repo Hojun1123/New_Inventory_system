@@ -33,6 +33,24 @@ def EngineRepository(act, data):
         except:
             return -1
 
+    def selectByDate2():
+        sql = "SELECT * FROM ENGINE WHERE input_date<%s;"
+        # data = (start_date, end_date)
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
+    def selectBetweenDate():
+        sql = "SELECT * FROM ENGINE WHERE input_date>=%s AND input_date<=%s;"
+        # data = (start_date, end_date)
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
     def selectValidEngine():
         sql = "SELECT barcode, mip, type, input_date, packing_date, errorflag, exp FROM ENGINE;"
         try:
@@ -108,6 +126,8 @@ def EngineRepository(act, data):
             result = delete()
         elif act == 'sd':
             result = selectByDate()
+        elif act == 'sd2':
+            result = selectByDate2()
         elif act == 'checkBarcode':
             result = selectValidEngine()
         elif act == 'selectById':
@@ -116,6 +136,8 @@ def EngineRepository(act, data):
             result = selectToday()
         elif act == 'updateErrorFlag':
             result = updateErrorFlag()
+        elif act == 'betweenDate':
+            result = selectBetweenDate()
     except:
         print("DB 연결 오류")
         return -1
