@@ -1,6 +1,7 @@
 import pymysql as db
 
 #### db 연결 정보 ######
+dbInfo = ["bangwol08.iptime.org", "inven", 50000, "manager123!@#", "InventoryManagement"]
 ########
 
 '''
