@@ -103,7 +103,7 @@ def getReport(start, end):
         tmp += "<td class='rt-bl'>" + str(asum) + "</td></tr><tr><td class='rt-td-60 rt-br'>재고계</td>"
         tmp += "<td style='background-color:#FDFD96'>" + str(mergeTables[datelist[0]][key]-mergeTablesIn[datelist[0]][key]+mergeTablesOut[datelist[0]][key]) + "</td>"
         for dd in datelist:
-            tmp += "<td>" + tostr(mergeTables[dd][key]) + "</td>"
+            tmp += "<td>" + str(mergeTables[dd][key]) + "</td>"
         tmp += "<td class='rt-bl' style='background-color:#FDFD96'>" + str(mergeTables[datelist[-1]][key]) + "</td></tr>"
         return tmp + mipBody(values)
 
@@ -125,7 +125,7 @@ def getReport(start, end):
             tmp += "<td class='rt-bl'>" + str(asum) + "</td></tr><tr><td class='rt-br'>재고</td>"
             tmp += "<td style='background-color:#FFFFDD'>" + str(mergeTables[datelist[0]][v]-mergeTablesIn[0][v]+mergeTablesOut[0][v]) + "</td>"
             for dd in datelist:
-                tmp += "<td>" + tostr(mergeTables[dd][v]) + "</td>"
+                tmp += "<td>" + str(mergeTables[dd][v]) + "</td>"
             tmp += "<td class='rt-bl' style='background-color:#FFFFDD'>" + str(mergeTables[datelist[-1]][v]) + "</td></tr>"
         return tmp
 
@@ -143,5 +143,5 @@ def getReport(start, end):
     resultTable += "<td class='rt-bl'>" + str(sum(OUT.values())) + "</td></tr><tr><td class='rt-td-60 rt-br' style='background-color:#fff037'>재고계</td>"
     resultTable += "<td style='background-color:#fff037'>" + str(STOCK[datelist[0]] + OUT[datelist[0]] - IN[datelist[0]]) + "</td>"
     for d in datelist:
-        resultTable += "<td>" + tostr(STOCK[d]) + "</td>"
+        resultTable += "<td>" + str(STOCK[d]) + "</td>"
     return resultTable + "<td class='rt-bl' style='background-color:#fff037'>" + str(STOCK[datelist[-1]]) + "</td></tr>"
