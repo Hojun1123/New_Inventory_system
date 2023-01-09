@@ -55,7 +55,7 @@
                     <a class="nav-link" href="inventory">전체 조회</a>
                 </li>
                 <li class="nav-item">
-                    <a class="current-page-text nav-link" href="inventoryPayment">재고수불부</a>
+                    <a class="current-page-text nav-link" href="/view/inventoryPayment">재고수불부</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="report">일자별 수불</a>
@@ -82,7 +82,7 @@
 </nav>
 
 <!--datepicker-->
-<form action="/inventoryPayment" class="datepicker-calendar-container my-3" method="post" style="min-width: 1200px;">
+<form action="/view/inventoryPayment" class="datepicker-calendar-container my-3" method="post" style="min-width: 1200px;">
     <div class="d-flex flex-wrap my-2">
         <div class="input-group date datepicker-calendar">
             <input name="startdate" type="text" class="form-control" value="{{ startdate }}" id="startDatepicker"

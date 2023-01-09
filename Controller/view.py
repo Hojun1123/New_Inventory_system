@@ -2,6 +2,7 @@ from flask import Blueprint, Flask, render_template, request
 from Service.View import generateReport
 from Service.View import viewAllEngines
 from Service.View import viewTodayEngines
+from Service.View import inventoryPayment
 viewController = Blueprint("/", __name__, url_prefix="/view")
 
 
@@ -51,3 +52,15 @@ def todayEngines():
     return render_template("/viewTodayResult.html", inputTable=inputTable, outputTable=outputTable)
 
 
+@viewController.route("/inventoryPayment", methods=['GET', 'POST'])
+def viewInventoryPayment():
+    if request.method == 'GET':
+        invenList = inventoryPayment.paymentListGet()
+        return render_template("/inventoryPayment.html", paymentList=invenList)
+    else:
+        startDate = request.form.get("startdate")
+        endDate = request.form.get("enddate")
+        if len(startDate) < 10 or len(endDate) < 10:
+            return "<script>alert(\'날짜를 선택해주세요\')\nwindow.history.back()</script>"
+        invenList = inventoryPayment.paymentListPost(startDate, endDate)
+        return render_template("/inventoryPayment.html", paymentList=invenList)
