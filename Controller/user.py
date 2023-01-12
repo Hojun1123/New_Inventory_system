@@ -20,3 +20,9 @@ def loginPage():  # put application's code here
         if len(session) > 0:
             return "<script>alert('이미 "+session['userid']+" 계정으로 로그인 중 입니다.');location.href='/view/todayEngines';</script>"
         return render_template("/login.html")
+
+@userController.route('/logout')
+def logoutPage():
+    if len(session) > 0:
+        session.clear()
+    return render_template("/login.html")
