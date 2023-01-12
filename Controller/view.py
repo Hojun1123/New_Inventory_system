@@ -5,11 +5,11 @@ from Service.View import viewTodayEngines
 from Service.View import inventoryPayment
 viewController = Blueprint("/", __name__, url_prefix="/view")
 
-
+'''
 @viewController.route("/")
 def main():
     return render_template("/main.html")
-
+'''
 
 @viewController.route("/report", methods=['GET', 'POST'])
 def generateReports():

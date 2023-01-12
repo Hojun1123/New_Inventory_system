@@ -101,9 +101,11 @@ def EngineRepository(act, data):
             a = cursor.execute(sql, data)
             connection.commit()
         except:
-            print("u error")
             return -1
         return a
+
+    def getErrorEngineList():
+        sql = "SELECT barcode, mip, type, input_date, exp"
 
     try:
         connection = db.connect(

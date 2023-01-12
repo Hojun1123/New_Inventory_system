@@ -12036,12 +12036,14 @@ textarea.form-control-lg {
     min-width: 1200px;
     margin: 0 auto;
     height: 75vh;
+    overflow: auto;
 }
 
 .inventory-table {
     table-layout: fixed;
     border-collapse: collapse;
     display: block;
+
 }
 
 .inventory-table tbody tr:nth-child(odd) {
@@ -12049,13 +12051,13 @@ textarea.form-control-lg {
 }
 
 .inventory-table thead {
-    display: block;
+    position: sticky;
+    top: 0px;
+    background: white;
+
 }
 
 .inventory-table tbody {
-    display: block;
-    overflow: auto;
-    height: 70vh;
 }
 
 .inventory-table th,

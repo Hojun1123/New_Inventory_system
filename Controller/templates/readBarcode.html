@@ -13,25 +13,13 @@
 <!--세션유무확인-->
 {% if not session["userid"] %}
     <script>
-        alert("로그인이 필요합니다")
-        location.href = "/"
+        alert("로그인이 필요합니다");
+        location.href = "/";
     </script>
 {% endif %}
-
-<!--전용계정세션확인-->
-{% if session["userid"] == 'user' %}
-    <script>
-        alert("해당페이지는 전용계정만 접근가능합니다.")
-        location.href = "/"
-    </script>
-{% endif %}
-
-
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <script type="text/javascript">
-            alert("{{messages[-1]}}");
-        </script>
+        <script type="text/javascript">alert("{{messages[-1]}}");</script>
     {% endif %}
 {% endwith %}
 
