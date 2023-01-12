@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>재고 관리 프로그램</title>
 
-    <link href="/css/style.css" rel="stylesheet"/>
+    <link href="../static/css/style.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -49,14 +49,6 @@
     </script>
 {% endif %}
 
-<!--관리자세션확인-->
-{% if session["userid"] != 'manager' %}
-    <script>
-        alert("해당페이지는 관리자만 접근가능합니다.")
-        location.href = "/"
-    </script>
-{% endif %}
-
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <script type="text/javascript">
@@ -64,22 +56,6 @@
         </script>
     {% endif %}
 {% endwith %}
-<script>
-    i = 1;
-    const add_input = () => {
-
-        tmp = "ENG[" + i + "]";
-        const inputData = document.getElementById("inputData");
-        newDiv = document.createElement("div");
-        newDiv2 = document.createElement("div");
-        newDiv.innerHTML = `<input type="text" name="ENG[]" id="${tmp}" placeholder="" autofocus><label class="form-label" for="${tmp}"> 엔진을 입력해주세요</label>`;
-        inputData.appendChild(newDiv)
-        tmp = "EXP[" + i + "]";
-        newDiv2.innerHTML = `<input type="text" name="EXP[]" id="${tmp}" placeholder="" autofocus><label class="form-label" for="${tmp}"> 사유를 입력해주세요</label>`;
-        inputData.appendChild(newDiv2)
-        i = i + 1
-    }
-</script>
 <!--login.html 에서 nav bar 제거 및 login section 높이 수정-->
 <main>
     <nav class="navbar navbar-expand-md navbar-light border-bottom navbar-custom">
@@ -135,7 +111,7 @@
                         <div class="d-flex align-items-center">
                             <div class="card-body p-sm-4 text-black m-3">
 
-                                <form action="/setInvalidEngine" method="post">
+                                <form action="/engine/setInvalidEngine" method="post">
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <!--    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i> -->
                                         <span class="h1 fw-bold mb-0">불량 엔진 추가</span>
@@ -147,13 +123,13 @@
                                     -->
                                     <div id="inputData">
                                         <div class="mb-3">
-                                            <input type="text" name="ENG[]" id="ENG[0]"
+                                            <input type="text" name="eid" id="ENG[0]"
                                                    class="form-control form-control-sm"
-                                                   placeholder="ex) 259717" size=45 maxlength=6 autofocus>
+                                                   placeholder="ex) G4FDGH100055R51U" size=45 autofocus>
                                             <label class="form-label data-setting-comment" for="mip">엔진을 입력해주세요</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="text" name="EXP[]" id="EXP[0]"
+                                            <input type="text" name="exp" id="EXP[0]"
                                                    class="form-control form-control-sm"
                                                    placeholder="ex) 엔진 파손" size=45 autofocus>
                                             <label class="form-label data-setting-comment" for="mip">사유를 입력해주세요</label>

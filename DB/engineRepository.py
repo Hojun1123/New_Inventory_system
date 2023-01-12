@@ -33,6 +33,24 @@ def EngineRepository(act, data):
         except:
             return -1
 
+    def selectByDate2():
+        sql = "SELECT * FROM ENGINE WHERE input_date<%s;"
+        # data = (start_date, end_date)
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
+    def selectBetweenDate():
+        sql = "SELECT * FROM ENGINE WHERE input_date>=%s AND input_date<=%s;"
+        # data = (start_date, end_date)
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
     def selectValidEngine():
         sql = "SELECT barcode, mip, type, input_date, packing_date, errorflag, exp FROM ENGINE;"
         try:
@@ -44,7 +62,13 @@ def EngineRepository(act, data):
 
 
     def update():
-        return -1
+        sql = "UPDATE ENGINE SET mip=%s, type=%s, input_date=%s, packing_date=%s, location=%s, errorflag=%s, exp=%s WHERE barcode=%s;"
+        try:
+            cursor.execute(sql, data)
+            connection.commit()
+        except:
+            return -1
+        return 1
 
     def delete():
         sql = "DELETE FROM ENGINE WHERE barcode=%s;"
@@ -54,6 +78,32 @@ def EngineRepository(act, data):
         except:
             return -1
         return 1
+
+    def selectById():
+        sql = "SELECT * FROM ENGINE WHERE barcode=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
+    def selectToday():
+        sql = "SELECT * FROM ENGINE WHERE input_date=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
+    def updateErrorFlag():
+        sql = "UPDATE ENGINE SET errorflag=%s, exp=%s WHERE barcode=%s;"
+        try:
+            a = cursor.execute(sql, data)
+            connection.commit()
+        except:
+            print("u error")
+            return -1
+        return a
 
     try:
         connection = db.connect(
@@ -74,8 +124,18 @@ def EngineRepository(act, data):
             result = delete()
         elif act == 'sd':
             result = selectByDate()
+        elif act == 'sd2':
+            result = selectByDate2()
         elif act == 'checkBarcode':
             result = selectValidEngine()
+        elif act == 'selectById':
+            result = selectById()
+        elif act == 'st':
+            result = selectToday()
+        elif act == 'updateErrorFlag':
+            result = updateErrorFlag()
+        elif act == 'betweenDate':
+            result = selectBetweenDate()
     except:
         print("DB 연결 오류")
         return -1

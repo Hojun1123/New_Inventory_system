@@ -135,8 +135,8 @@
                         데이터 설정
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item nav-dropdown-item" href="addMIP">MIP 추가</a></li>
-                        <li><a class="dropdown-item nav-dropdown-item" href="setInvalidEngine">불량 엔진 추가</a></li>
+                        <li><a class="dropdown-item nav-dropdown-item" href="">MIP 추가</a></li>
+                        <li><a class="dropdown-item nav-dropdown-item" href="">불량 엔진 추가</a></li>
                     </ul>
                 </li>
             </ul>
@@ -190,29 +190,15 @@
         <table id="filter" class="table inventory-table table-bordered table-hover">
             <thead>
             <th col-index=1 scope="col">번호</th>
-            <th col-index=2 scope="col">
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all">기종</option>
-                </select>
-            </th>
-            <th col-index=3 scope="col">
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all">MIP</option>
-                </select>
-            </th>
-            <th col-index=4 scope="col">EID</th>
+            <th col-index=2 scope="col">바코드</th>
+            <th col-index=3 scope="col">MIP</th>
+            <th col-index=4 scope="col">타입</th>
             <th col-index=5 scope="col">입고일</th>
             <th col-index=6 scope="col">포장일</th>
-            <th col-index=7 scope="col">출고일</th>
-            <th col-index=8 scope="col">출고exp</th>
-            <th col-index=9 scope="col">groupID</th>
-            <th col-index=10 scope="col">위치</th>
-            <th col-index=11 scope="col">상태</th>
-            <th col-index=12 scope="col">
-                <select class="table-filter" onchange="filter_rows()">
-                    <option value="all">비고</option>
-                </select>
-            </th>
+            <th col-index=7 scope="col">Location</th>
+            <th col-index=8 scope="col">불량</th>
+            <th col-index=9 scope="col">비고</th>
+            <th>수정</th>
             </thead>
             <tbody>
             {% for row in table %}
@@ -221,8 +207,9 @@
                     {% for cell in row %}
 
                         <td>{{ cell }}</td>
-
                     {% endfor %}
+                    <td><button onclick=location.href="/engine/editForm?eid={{ row[0] }}">수정</button></td>
+                    <td><button onclick=location.href="/engine/deleteProcess?eid={{ row[0] }}">삭제</button></td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -95,24 +95,47 @@
                         <div class="d-flex align-items-center">
                             <div class="card-body p-sm-4 text-black m-3">
 
-                                <form action="/mip/addMIP" method="post">
-                                    <div class="d-flex align-items-center mb-3 pb-1">
-                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0">MIP 추가</span>
-                                    </div>
-                                    <!--<h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Text</h5>-->
-
+                                <form action="/engine/editForm?eid={{ engine[0] }}" method="post">
                                     <div class="mb-3">
-                                        <input type="text" name="mip" id="mip" class="form-control form-control-sm"
-                                               placeholder="" autofocus>
-                                        <label class="form-label data-setting-comment" for="mip">mip를 입력해주세요</label>
+                                        <input type="text" name="barcode" class="form-control form-control-sm"
+                                               placeholder="{{ engine[0] }}" value="{{ engine[0] }}" readonly>
+                                        <label class="form-label data-setting-comment" for="mip">바코드</label>
                                     </div>
-                                    <div class="mb-2">
-                                        <input type="text" name="type" id="type" class="form-control form-control-sm"
-                                               placeholder="" autofocus>
-                                        <label class="form-label data-setting-comment" for="type">기종을 입력해주세요</label>
+                                    <div class="mb-3">
+                                        <input type="text" name="mip" class="form-control form-control-sm"
+                                               placeholder="{{ engine[1] }}" value="{{ engine[1] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">MIP</label>
                                     </div>
-                                    <!--<a class="small text-muted" href="#!">abc</a>-->
+                                    <div class="mb-3">
+                                        <input type="text" name="type" class="form-control form-control-sm"
+                                               placeholder="{{ engine[2] }}" value="{{ engine[2] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">타입</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" name="input_date" class="form-control form-control-sm"
+                                               placeholder="{{ engine[3] }}" value="{{ engine[3] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">입고일</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" name="packing_date" class="form-control form-control-sm"
+                                               placeholder="{{ engine[4] }}" value="{{ engine[4] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">포장일</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" name="location" class="form-control form-control-sm"
+                                               placeholder="{{ engine[6] }}" value="{{ engine[6] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">Location</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" name="errorflag" class="form-control form-control-sm"
+                                               placeholder="{{ engine[7] }}" value="{{ engine[7] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">불량엔진</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" name="exp" class="form-control form-control-sm"
+                                               placeholder="{{ engine[8] }}" value="{{ engine[8] }}" autofocus>
+                                        <label class="form-label data-setting-comment" for="mip">비고</label>
+                                    </div>
                                     <div class="mb-3">
                                         <button class="btn btn-dark btn-lg data-setting-btn-block" type="submit">저장
                                         </button>
@@ -120,7 +143,7 @@
                                 </form>
                                 <div class="mb-2">
                                     <button class="btn btn-dark btn-lg btn-block data-setting-btn-block" type="button"
-                                            onclick="location.href='/Controller'">홈화면
+                                            onclick="location.href=''">홈화면
                                     </button>
                                 </div>
                             </div>
@@ -130,29 +153,6 @@
             </div>
         </div>
     </div>
-
-
-    <div class="mip-table-container mt-4 mx-5">
-        <table class="mip-table table table-bordered table-striped table-hover">
-            <thead>
-            <th>번호</th>
-            <th>MIP</th>
-            <th>기종</th>
-            </thead>
-            <tbody>
-            {% for a in mipList %}
-                <tr>
-                    <th scope="row"></th>
-                    {% for b in a %}
-                        <td>{{ b }}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-
 </section>
 </body>
 </html>

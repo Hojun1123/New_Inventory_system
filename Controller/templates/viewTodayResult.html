@@ -3,10 +3,10 @@
 <head>
     <title>재고 관리 프로그램</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 
     <!--dropdown-->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
     <!--datepicker-->
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -15,7 +15,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
     <script type='text/javascript'
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="/js/javascript.js"></script>
+    <script src="../static/js/javascript.js"></script>
 </head>
 <body>
 <!--세션유무확인-->
@@ -118,11 +118,11 @@
             </th>
             </thead>
             <tbody style="font-size: 12px">
-            {% for idx in range(0, inputlen) %}
+            {% for row in inputTable %}
                 <tr>
-                    <th scope="row">{{ idx + 1 }}</th>
-                    {% for data in inputList[idx] %}
-                        <td>{{ data }}</td>
+                    <th scope="row">3</th>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
@@ -162,15 +162,14 @@
             </th>
             </thead>
             <tbody style="font-size: 12px">
-            {% for idx2 in range(0, outputlen) %}
+            {% for row in outputTable %}
                 <tr>
-                    <th scope="row">{{ idx2 + 1 }}</th>
-                    {% for data2 in outputList[idx2] %}
-                        <td>{{ data2 }}</td>
+                    <th scope="row">2</th>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
-
             </tbody>
         </table>
     </div>

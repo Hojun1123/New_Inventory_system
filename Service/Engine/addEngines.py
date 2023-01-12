@@ -32,7 +32,7 @@ def inputEngine(data):
     insertData = []
 
     types = defaultdict(str)
-    types2 = dao2.getTypes()
+    types2 = dao2.MIPRepository('getMIP')
     if types2 == -1:
         #mip테이블 에러
         return -1

@@ -3,6 +3,7 @@ from . import user
 from . import engine
 from . import mip
 from . import view
+from . import etc
 
 app = Flask(__name__)
 
@@ -14,3 +15,5 @@ app.register_blueprint(engine.engineController)
 app.register_blueprint(mip.mipController)
 # 조회 페이지, 당일조회, 기간조회 등등(select)
 app.register_blueprint(view.viewController)
+# 기타 페이지, 바코드 인쇄, 액셀 파일 생성 등
+app.register_blueprint(etc.etcController)
