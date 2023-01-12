@@ -81,6 +81,13 @@
             });
         });
     </script>
+    <script>
+        function askDelete(engineId){
+             if(confirm("해당 엔진을 정말 삭제하시겠습니까?")) {
+                 location.href="/engine/deleteProcess?eid="+engineId;
+             }
+        }
+    </script>
 </head>
 <body>
 <!--세션유무확인-->
@@ -208,8 +215,8 @@
 
                         <td>{{ cell }}</td>
                     {% endfor %}
-                    <td><button onclick=location.href="/engine/editForm?eid={{ row[0] }}">수정</button></td>
-                    <td><button onclick=location.href="/engine/deleteProcess?eid={{ row[0] }}">삭제</button></td>
+                    <td><button onclick=location.href="/engine/editForm?eid={{row[0]}}">수정</button></td>
+                    <td><button onclick="askDelete('{{row[0]}}')">삭제</button></td>
                 </tr>
             {% endfor %}
             </tbody>

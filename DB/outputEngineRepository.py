@@ -74,6 +74,14 @@ def OutputEngineRepository(act, data):
             return -1
         return 1
 
+    def selectErrorEngineList():
+        sql = "SELECT barcode, mip, type, input_date, packing_date, output_date, destination, exp FROM OUTPUTENGINE WHERE errorflag>0;"
+        try:
+            a = cursor.execute(sql)
+            return cursor.fetchall()
+        except:
+            return -1
+
     try:
         connection = db.connect(
             host=dbInfo[0],
@@ -101,6 +109,9 @@ def OutputEngineRepository(act, data):
             result = selectBetweenDateI()
         elif act == 'betweenDateO':
             result = selectBetweenDateO()
+        elif act == 'getErrorEngines':
+            result = selectErrorEngineList()
+
 
     except:
         print("DB 연결 오류")

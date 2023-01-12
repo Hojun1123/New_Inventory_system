@@ -18,11 +18,14 @@ def loginPage():  # put application's code here
             return render_template("/login.html")
     else:
         if len(session) > 0:
-            return "<script>alert('이미 "+session['userid']+" 계정으로 로그인 중 입니다.');location.href='/view/todayEngines';</script>"
+            try:
+                return "<script>alert('이미 "+session['userid']+" 계정으로 로그인 중 입니다.');location.href='/view/todayEngines';</script>"
+            except:
+                flash("세션이 만료되었습니다.")
         return render_template("/login.html")
 
 @userController.route('/logout')
 def logoutPage():
     if len(session) > 0:
         session.clear()
-    return render_template("/login.html")
+    return "<script>location.href='/'</script>"

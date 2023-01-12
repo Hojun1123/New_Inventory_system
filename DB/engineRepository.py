@@ -104,8 +104,13 @@ def EngineRepository(act, data):
             return -1
         return a
 
-    def getErrorEngineList():
-        sql = "SELECT barcode, mip, type, input_date, exp"
+    def selectErrorEngineList():
+        sql = "SELECT barcode, mip, type, input_date, packing_date, exp FROM ENGINE WHERE errorflag>0;"
+        try:
+            a = cursor.execute(sql)
+            return cursor.fetchall()
+        except:
+            return -1
 
     try:
         connection = db.connect(
@@ -138,6 +143,8 @@ def EngineRepository(act, data):
             result = updateErrorFlag()
         elif act == 'betweenDate':
             result = selectBetweenDate()
+        elif act == 'getErrorEngines':
+            result = selectErrorEngineList()
     except:
         print("DB 연결 오류")
         return -1

@@ -91,8 +91,7 @@ def editForm():
         result = editEngine.editEngineData(eid)
         if result == -1:
             flash("[ERROR] 데이터 베이스 오류2")
-        else:
-            return render_template("/editForm.html", engine=result[0])
+        return "<script>location.href='/engine/editEngines';</script>"
 
 
 @engineController.route("/deleteProcess")
@@ -105,13 +104,16 @@ def deleteProcess():
     table = readAllEngines.selectAllEngines()
     if table == -1:
         flash("[ERROR] 테이블로드, 데이터 베이스 오류")
-    return render_template("/editEngine.html", table=table)
+    return "<script>location.href='/engine/editEngines';</script>"
 
 
 @engineController.route("/setInvalidEngine", methods=["GET", "POST"])
 def setInvalidEngine():
+    table = addErrorEngine.getErrorEngineList()
+    if table == -1:
+        table = [["[ERROR] 데이터 베이스 오류"]]
     if request.method == 'GET':
-        return render_template("/setInvalidEngine.html")
+        return render_template("/setInvalidEngine.html", table=table)
     else:
         eid = request.form.get('eid')
         exp = request.form.get('exp')
@@ -120,4 +122,4 @@ def setInvalidEngine():
             flash("[ERROR] 데이터 베이스 오류")
         elif result == -2 or result == 0:
             flash("[ERROR] 존재하지 않는 바코드입니다.")
-        return render_template("/setInvalidEngine.html")
+        return render_template("/setInvalidEngine.html", table=table)
