@@ -41,19 +41,21 @@
     </script>
 </head>
 <body>
-<!--세션유무확인-->
 {% if not session["userid"] %}
     <script>
-        alert("로그인이 필요합니다")
-        location.href = "/"
+        alert("로그인이 필요합니다");
+        location.href = "/";
     </script>
 {% endif %}
-
+{% if session["userid"] != 'manager' %}
+    <script>
+        alert("해당페이지는 관리자만 접근가능합니다.");
+        location.href = "/view/todayEngines";
+    </script>
+{% endif %}
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <script type="text/javascript">
-            alert("{{messages[0]}}");
-        </script>
+        <script type="text/javascript">alert("{{messages[-1]}}");</script>
     {% endif %}
 {% endwith %}
 <!--login.html 에서 nav bar 제거 및 login section 높이 수정-->
@@ -67,36 +69,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-
-                <!-- 기존 nav
-                <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/view/">메인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dailylist">당일 조회</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/allEngine">전체 조회</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/inventoryPayment">재고수불부</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/report">일자별 수불</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        데이터 설정
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item nav-dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
-                        <li><a class="dropdown-item nav-dropdown-item" href="setInvalidEngine">불량 엔진 추가</a></li>
-                    </ul>
-                </li>
-            </ul>
-            -->
-
 
             <li class="nav-item">
                     <a class="current-page-text nav-link" href="/view/">메인</a>
@@ -157,13 +129,13 @@
                                             <input type="text" name="eid" id="ENG[0]"
                                                    class="form-control form-control-sm"
                                                    placeholder="ex) G4FDGH100055R51U" size=45 autofocus>
-                                            <label class="form-label data-setting-comment" for="mip">엔진을 입력해주세요</label>
+                                            <label class="form-label data-setting-comment">엔진을 입력해주세요</label>
                                         </div>
                                         <div class="mb-2">
                                             <input type="text" name="exp" id="EXP[0]"
                                                    class="form-control form-control-sm"
                                                    placeholder="ex) 엔진 파손" size=45 autofocus>
-                                            <label class="form-label data-setting-comment" for="mip">사유를 입력해주세요</label>
+                                            <label class="form-label data-setting-comment">사유를 입력해주세요</label>
                                         </div>
                                     </div>
                                     <!--<a class="small text-muted" href="#!">abc</a>-->

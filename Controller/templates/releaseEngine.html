@@ -9,27 +9,16 @@
     <script src="../static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<!--세션유무확인-->
+
 {% if not session["userid"] %}
     <script>
-        alert("로그인이 필요합니다")
-        location.href = "/"
+        alert("로그인이 필요합니다");
+        location.href = "/";
     </script>
 {% endif %}
-
-<!--전용계정세션확인-->
-{% if session["userid"] == 'user' %}
-    <script>
-        alert("해당페이지는 전용계정만 접근가능합니다.")
-        location.href = "/"
-    </script>
-{% endif %}
-
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <script type="text/javascript">
-            alert("{{messages[-1]}}");
-        </script>
+        <script type="text/javascript">alert("{{messages[-1]}}");</script>
     {% endif %}
 {% endwith %}
 
@@ -42,36 +31,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-
-                <!-- 기존 nav
-                <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/view/">메인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dailylist">당일 조회</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/allEngine">전체 조회</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/inventoryPayment">재고수불부</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/report">일자별 수불</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        데이터 설정
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item nav-dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
-                        <li><a class="dropdown-item nav-dropdown-item" href="setInvalidEngine">불량 엔진 추가</a></li>
-                    </ul>
-                </li>
-            </ul>
-            -->
-
 
             <li class="nav-item">
                     <a class="current-page-text nav-link" href="/view/">메인</a>
