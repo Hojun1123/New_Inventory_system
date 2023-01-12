@@ -84,7 +84,7 @@
     <script>
         function askDelete(engineId){
              if(confirm("해당 엔진을 정말 삭제하시겠습니까?")) {
-                 location.href="/engine/deleteProcess?eid="+engineId;
+                 location.href="/engine/deleteOutputEngineProcess?eid="+engineId;
              }
         }
     </script>
@@ -159,6 +159,7 @@
 </nav>
 
 
+
 <div class="m-4">
     <div class="inventory-table-container">
         <table id="filter" class="table inventory-table table-bordered table-hover">
@@ -169,9 +170,10 @@
             <th col-index=4 scope="col">타입</th>
             <th col-index=5 scope="col">입고일</th>
             <th col-index=6 scope="col">포장일</th>
-            <th col-index=7 scope="col">위치</th>
-            <th col-index=8 scope="col">불량</th>
-            <th col-index=9 scope="col">비고</th>
+            <th col-index=7 scope="col">출고일</th>
+            <th col-index=8 scope="col">배송지</th>
+            <th col-index=9 scope="col">불량</th>
+            <th col-index=10 scope="col">비고</th>
             <th>수정</th>
             <th>삭제</th>
             </thead>
@@ -183,7 +185,7 @@
 
                         <td>{{ cell }}</td>
                     {% endfor %}
-                    <td><button onclick=location.href="/engine/editForm?eid={{row[0]}}">수정</button></td>
+                    <td><button onclick=location.href="/engine/editOutputEngineForm?eid={{row[0]}}">수정</button></td>
                     <td><button onclick="askDelete('{{row[0]}}')">삭제</button></td>
                 </tr>
             {% endfor %}

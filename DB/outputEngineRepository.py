@@ -43,10 +43,22 @@ def OutputEngineRepository(act, data):
         return 1
 
     def update():
-        return -1
+        sql = "UPDATE OUTPUTENGINE SET mip=%s, type=%s, input_date=%s, packing_date=%s, output_date=%s, errorflag=%s, exp=%s, destination=%s WHERE barcode=%s;"
+        try:
+            cursor.execute(sql, data)
+            connection.commit()
+        except:
+            return -1
+        return 1
 
     def delete():
-        return -1
+        sql = "DELETE FROM OUTPUTENGINE WHERE barcode=%s;"
+        try:
+            cursor.execute(sql, data)
+            connection.commit()
+        except:
+            return -1
+        return 1
 
     def selectToday():
         sql = "SELECT * FROM OUTPUTENGINE WHERE output_date=%s;"
@@ -82,6 +94,14 @@ def OutputEngineRepository(act, data):
         except:
             return -1
 
+    def selectById():
+        sql = "SELECT * FROM OUTPUTENGINE WHERE barcode=%s;"
+        try:
+            cursor.execute(sql, data)
+            return cursor.fetchall()
+        except:
+            return -1
+
     try:
         connection = db.connect(
             host=dbInfo[0],
@@ -111,6 +131,8 @@ def OutputEngineRepository(act, data):
             result = selectBetweenDateO()
         elif act == 'getErrorEngines':
             result = selectErrorEngineList()
+        elif act == 'selectById':
+            result = selectById()
 
 
     except:
