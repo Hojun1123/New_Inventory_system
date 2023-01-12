@@ -58,51 +58,82 @@
 {% endwith %}
 <!--login.html 에서 nav bar 제거 및 login section 높이 수정-->
 <main>
-    <nav class="navbar navbar-expand-md navbar-light border-bottom navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="main">SJA.inc</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="main">메인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="dailylist">당일 조회</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="inventory">전체 조회</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="inventoryPayment">재고수불부</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="report">일자별 수불</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="current-page-text  nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink"
-                           role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            데이터 설정
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item nav-dropdown-item" href="addMIP">MIP 추가</a></li>
-                            <li><a class="dropdown-item nav-dropdown-item" href="setInvalidEngine">불량 엔진 추가</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <button type="button" onclick="location.href='/refresh'" class="reload-btn">
-                    <img src="/assets/img/reload.png" alt="새로고침">
-                </button>
-                <button class="logout-btn" onclick="location.href='/logout'">log out</button>
-            </div>
+    <nav class="navbar navbar-expand-sm navbar-light border-bottom navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/view/">SJA.inc</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+
+                <!-- 기존 nav
+                <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/view/">메인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dailylist">당일 조회</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/allEngine">전체 조회</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/inventoryPayment">재고수불부</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/report">일자별 수불</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        데이터 설정
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item nav-dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
+                        <li><a class="dropdown-item nav-dropdown-item" href="setInvalidEngine">불량 엔진 추가</a></li>
+                    </ul>
+                </li>
+            </ul>
+            -->
+
+
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/view/">메인</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/view/report">보고서</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/view/allEngines">조회</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/engine/addEngine">입고</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/engine/releaseEngine">출고</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/engine/editEngines">수정&삭제</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/engine/editForm">데이터수정</a>
+            </li>
+            <li class="nav-item">
+                    <a class="current-page-text nav-link" href="/mip/addMIP">mip 추가</a>
+            </li>
         </div>
-    </nav>
+        <div>
+            <button type="button" onclick="location.href='/etc/enginedbExport'" class="reload-btn">
+                입고엔진액셀Export(테스트)
+            </button>
+            <button type="button" onclick="location.href='/etc/outputenginedbExport'" class="reload-btn">
+                출고엔진액셀Export(테스트)
+            </button>
+            <button class="logout-btn" onclick="location.href='/logout'">log out</button>
+        </div>
+    </div>
+</nav>
     <section class="m-5">
         <div class="container py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">

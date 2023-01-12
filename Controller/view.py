@@ -25,7 +25,6 @@ def generateReports():
             table = "[ERROR] 올바르지 않은 날짜 형식입니다."
         return render_template("/report.html", table=table, startdate=str(startdate), enddate=str(enddate))
 
-
 @viewController.route("/allEngines", methods=['GET', 'POST'])
 def allEngines():
     if request.method == 'GET':
