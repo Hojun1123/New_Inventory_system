@@ -184,6 +184,8 @@
         <table id="filter" class="table inventory-table table-bordered table-hover">
             <thead>
             <th col-index=1 scope="col">번호</th>
+
+            <!--  드롭다운
             <th col-index=2 scope="col">
                 <select class="table-filter" onchange="filter_rows()">
                     <option value="all">기종</option>
@@ -194,6 +196,10 @@
                     <option value="all">MIP</option>
                 </select>
             </th>
+            -->
+
+            <th col-index=2 scope="col">기종</th>
+            <th col-index=3 scope="col">MIP</th>
             <th col-index=4 scope="col">EID</th>
             <th col-index=5 scope="col">입고일</th>
             <th col-index=6 scope="col">포장일</th>
@@ -202,11 +208,15 @@
             <th col-index=9 scope="col">groupID</th>
             <th col-index=10 scope="col">위치</th>
             <th col-index=11 scope="col">상태</th>
+            <th col-index=12 scope="col">비고</th>
+            <!--
             <th col-index=12 scope="col">
                 <select class="table-filter" onchange="filter_rows()">
                     <option value="all">비고</option>
                 </select>
             </th>
+            -->
+
             </thead>
             <tbody>
             {% for row in table %}
