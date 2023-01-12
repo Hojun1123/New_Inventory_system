@@ -7,7 +7,7 @@
     <link href="../static/css/style.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="../static/js/bootstrap.bundle.min.js"></script>
-
+<!--
     <script>
         $(document).ready(function () {
             /**
@@ -37,8 +37,8 @@
             });
 
         });
-
     </script>
+-->
 </head>
 <body>
 {% if not session["userid"] %}
@@ -123,13 +123,13 @@
                                     -->
                                     <div id="inputData">
                                         <div class="mb-3">
-                                            <input type="text" name="eid" id="ENG[0]"
+                                            <input type="text" name="eid"
                                                    class="form-control form-control-sm"
                                                    placeholder="ex) G4FDGH100055R51U" size=45 autofocus>
                                             <label class="form-label data-setting-comment">엔진을 입력해주세요</label>
                                         </div>
                                         <div class="mb-2">
-                                            <input type="text" name="exp" id="EXP[0]"
+                                            <input type="text" name="exp"
                                                    class="form-control form-control-sm"
                                                    placeholder="ex) 엔진 파손" size=45 autofocus>
                                             <label class="form-label data-setting-comment">사유를 입력해주세요</label>
@@ -159,7 +159,8 @@
     </section>
     <div class="invalid-table-nav d-flex my-3">
         <div>
-            <span class="invalid-table-amount">amount: {{ errorMount }}</span>
+            <!--버튼을 클릭하면, js로 amout값을 가져오고, 테이블 목록을 hidden처리해줌.-->
+            <span class="invalid-table-amount">amount: 개발ing~</span>
         </div>
         <div class="d-flex">
             <input class="invalid-table-btn datepicker-btn mx-2" id="entireButton" type="button" value="전체"/>
@@ -170,21 +171,18 @@
     <div>
         <table class="table invalid-table table-bordered table-striped table-hover">
             <thead>
-            <th>번호</th>
-            <th>기종</th>
-            <th>MIP</th>
-            <th>EID</th>
-            <th>입고일</th>
-            <th>포장일</th>
-            <th id="hidden_col">출고일</th>
-            <th id="hidden_col">출고exp</th>
-            <th id="hidden_col">Group</th>
-            <th id="hidden_col">위치</th>
-            <th id="hidden_col">상태</th>
-            <th>비고</th>
+                <th>번호</th>
+                <th>바코드</th>
+                <th>MIP</th>
+                <th>타입</th>
+                <th>입고일</th>
+                <th>포장일</th>
+                <th>출고일</th>
+                <th>배송지</th>
+                <th>비고</th>
             </thead>
             <tbody>
-            {% for a in curErrorList %}
+            {% for a in table %}
                 <tr>
                     <th scope="row"></th>
                     {% for b in a %}

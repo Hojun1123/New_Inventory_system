@@ -1,4 +1,5 @@
 import DB.engineRepository as en
+import DB.outputEngineRepository as oen
 def selectAllEngines():
     temp = en.EngineRepository('s', True)
     if temp == -1:
@@ -12,4 +13,19 @@ def selectAllEngines():
         else:
             error = "불량"
         result.append([barcode, mip, typ, input_date, output_date, location, error, exp])
+    return result
+
+
+def selectAllOutputEngines():
+    temp = oen.OutputEngineRepository('s', True)
+    if temp == -1:
+        return -1
+    result = []
+    #바코드, mip, 타입, 입고일, 포장일, 출고일, 불량, 비고, 출고지
+    for barcode, mip, typ, inputDate, packingDate, outputDate, error, exp, destination in temp:
+        if error == 0:
+            error = ''
+        else:
+            error = "불량"
+        result.append([barcode, mip, typ, inputDate, packingDate, outputDate, error, exp, destination])
     return result

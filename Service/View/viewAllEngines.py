@@ -23,12 +23,13 @@ def getAllEngines(start, end):
     #key(최근입고순으로정렬을위한 키), 바코드, mip, type, 입고일, 포장일, 출고일, 같은그룹, 위치, 에러엔진, 비고
     for i in enData:
         barcode, mip, types, inputDate, packingDate, gid, location, errorFlag, exp = i
-        outputDate = ""
         errorFlag = "불량엔진" if errorFlag > 0 else ""
-        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate),"" , errorFlag, exp])
+        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), "-","-" , errorFlag, exp])
     for i in oenData:
         barcode, mip, types, inputDate, packingDate, outputDate, errorFlag, exp, destination = i
         errorFlag = "불량엔진" if errorFlag > 0 else ""
+        if destination=='':
+            destination = '-'
         engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate),destination ,errorFlag, exp])
 
     #최근입고순정렬 > 타입별정렬 > mip별 정렬

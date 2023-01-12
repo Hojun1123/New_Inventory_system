@@ -7,7 +7,7 @@ userList = [
 def checkUser(id, pw):
     for i in userList:
         if i[0] == id and i[1] == pw:
-            return i[2]
+            return i[0]
     else:
         return False
 
