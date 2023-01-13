@@ -45,6 +45,8 @@ def releaseEngine():
             outputEngines.append(data + " : 출고금지 엔진!!!")
         else:
             outputEngines.append(data + " : 정상출고")
+        releaseEngines.playbeep(r)
+
         session['outputEngines'] = outputEngines
         return render_template("/releaseEngine.html", el=session['outputEngines'], length=len(session['outputEngines']))
     else:
