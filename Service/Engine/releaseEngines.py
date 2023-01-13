@@ -3,7 +3,7 @@ import DB.outputEngineRepository as oen
 import time
 from datetime import datetime
 from collections import defaultdict
-
+import winsound
 
 #### data 받아서 출고. ### 기능
 ### 요구사항
@@ -42,8 +42,11 @@ def outputEngine(data, validEngines):
     insertData = [data, a, b, c, d, output_date, e, f, '']
     return oen.OutputEngineRepository('i', insertData)
 
-
-
+def playbeep(result):
+    if result >= 0:     #정상
+        winsound.Beep(frequency=2500, duration=350)  # milliseconds)
+    else:               #불출금지, DB에러, 없는엔진불출시도
+        winsound.Beep(frequency=4000, duration=2000)
 
 
 
