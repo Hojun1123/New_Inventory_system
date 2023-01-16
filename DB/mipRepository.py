@@ -23,6 +23,15 @@ def MIPRepository(act, data=None):
             return -2
         return 1
 
+    def delete():
+        sql = "DELETE FROM MIP WHERE mip=%s;"
+        try:
+            cursor.execute(sql, data)
+            connection.commit()
+        except:
+            return -1
+        return 1
+
     try:
         connection = db.connect(
             host=dbInfo[0],
@@ -37,6 +46,8 @@ def MIPRepository(act, data=None):
             result = selectAll()
         elif act == 'insert':
             result = insert()
+        elif act == 'd':
+            result = delete()
     except:
         print("DB 연결 오류")
         return -1

@@ -12,7 +12,7 @@ def selectAllEngines():
             error = ''
         else:
             error = "불량"
-        result.append([barcode, mip, typ, input_date, output_date, location, error, exp])
+        result.append([barcode, mip, typ, stringToDate(input_date), stringToDate(output_date), location, error, exp])
     return result
 
 
@@ -27,5 +27,9 @@ def selectAllOutputEngines():
             error = ''
         else:
             error = "불량"
-        result.append([barcode, mip, typ, inputDate, packingDate, outputDate, error, exp, destination])
+        result.append([barcode, mip, typ, stringToDate(inputDate), stringToDate(packingDate), stringToDate(outputDate), destination, error, exp])
     return result
+
+def stringToDate(s):
+    s = str(s)
+    return s[0:4]+"-"+s[4:6]+"-"+s[6:8]

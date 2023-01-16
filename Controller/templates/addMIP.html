@@ -31,7 +31,13 @@
     </script>
 {% endif %}
 
-
+<script>
+    function askDelete(id){
+        if(confirm("해당 MIP를 정말 삭제하시겠습니까?")) {
+            location.href="/mip/deleteMIP?id="+id;
+        }
+    }
+</script>
 
 <nav class="navbar navbar-expand-sm navbar-light border-bottom navbar-custom">
     <div class="container-fluid">
@@ -133,6 +139,7 @@
             <th>번호</th>
             <th>MIP</th>
             <th>기종</th>
+            <th>삭제</th>
             </thead>
             <tbody>
             {% for a in mipList %}
@@ -141,6 +148,7 @@
                     {% for b in a %}
                         <td>{{ b }}</td>
                     {% endfor %}
+                        <td><button onclick="askDelete('{{a[0]}}')">삭제</button></td>
                 </tr>
             {% endfor %}
             </tbody>
