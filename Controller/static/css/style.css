@@ -11951,7 +11951,8 @@ textarea.form-control-lg {
     color: black !important;
 }
 
-.logout-btn {
+.navbar-btn {
+    margin-left: 10px;
     display: inline-block;
     font-weight: bold;
     border: 1px solid black;
@@ -11959,7 +11960,7 @@ textarea.form-control-lg {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.logout-btn:hover {
+.navbar-btn:hover {
     background: #d3d3d3;
     color: #212529;
 }
@@ -12007,6 +12008,8 @@ textarea.form-control-lg {
     width: 72vw;
     min-width: 1200px;
     margin: 0 auto;
+    overflow: auto;
+    height: 35vh;
 }
 
 .daily-table {
@@ -12015,18 +12018,21 @@ textarea.form-control-lg {
     display: block;
 }
 
+.daily-table tbody tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, .1);
+}
+
 .daily-table thead {
-    display: block;
+    position: sticky;
+    top: 0;
+    background: white;
 }
 
 .daily-table tbody {
-    display: block;
-    overflow: auto;
-    height: 27vh;
 }
 
 .daily-table th, .daily-table td {
-    width: 105px;
+    width: 115px;
 }
 
 /*inventory.html table css*/
@@ -12035,8 +12041,8 @@ textarea.form-control-lg {
     width: 80vw;
     min-width: 1200px;
     margin: 0 auto;
-    height: 75vh;
     overflow: auto;
+    height: 75vh;
 }
 
 .inventory-table {
@@ -12047,14 +12053,13 @@ textarea.form-control-lg {
 }
 
 .inventory-table tbody tr:nth-child(odd) {
-    background-color: rgba(0, 0, 0, .05);
+    background-color: rgba(0, 0, 0, .1);
 }
 
 .inventory-table thead {
     position: sticky;
-    top: 0px;
+    top: 0;
     background: white;
-
 }
 
 .inventory-table tbody {
@@ -12062,7 +12067,7 @@ textarea.form-control-lg {
 
 .inventory-table th,
 .inventory-table td {
-    width: 105px;
+    width: 115px;
 }
 
 .reload-btn {

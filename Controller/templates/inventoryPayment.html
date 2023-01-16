@@ -41,28 +41,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-
-            <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/view/report">기간별 통계</a>
-            </li>
-            <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/view/allEngines">기간별 조회</a>
-            </li>
-            <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/report">기간별 통계</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/allEngines">기간별 조회</a>
+                </li>
+                <li class="nav-item">
                     <a class="current-page-text nav-link" href="/view/inventoryPayment">재고수불부</a>
-            </li>
-            <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/engine/addEngine">엔진 입고</a>
-            </li>
-            <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/engine/releaseEngine">엔진 출고</a>
-            </li>
-            <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/engine/editEngines">엔진 수정 & 삭제</a>
-            </li>
-            <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/mip/addMIP">MIP 추가</a>
-            </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/engine/addEngine">엔진 입고</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/engine/releaseEngine">엔진 출고</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/engine/editEngines">입고 엔진 수정 & 삭제</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/engine/editOutputEngines">출고 엔진 수정 & 삭제</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mip/addMIP">MIP 추가</a>
+                </li>
+            </ul>
         </div>
         <div>
             <button type="button" onclick="location.href='/etc/enginedbExport'" class="reload-btn">
@@ -81,7 +84,7 @@
     <div class="d-flex flex-wrap my-2">
         <div class="input-group date datepicker-calendar">
             <input name="startdate" type="text" class="form-control" value="{{ startdate }}" id="startDatepicker"
-                   autocomplete='off' placeholder="ex) 2022-01-01">
+                   autocomplete='off' placeholder="ex) 2023-01-01">
             <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
             </span>
@@ -89,7 +92,7 @@
         <span>~</span>
         <div class="input-group date datepicker-calendar">
             <input name="enddate" type="text" class="form-control" value="{{ enddate }}" id="endDatepicker"
-                   autocomplete='off' placeholder="ex) 2022-12-31">
+                   autocomplete='off' placeholder="ex) 2023-12-31">
             <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
             </span>
