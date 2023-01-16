@@ -88,7 +88,7 @@ def EngineRepository(act, data):
             return -1
 
     def selectToday():
-        sql = "SELECT * FROM ENGINE WHERE input_date=%s;"
+        sql = "SELECT * FROM ENGINE WHERE input_date=%s ORDER BY group_id;"
         try:
             cursor.execute(sql, data)
             return cursor.fetchall()
