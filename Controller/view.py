@@ -1,15 +1,17 @@
-from flask import Blueprint, Flask, render_template, request
+from flask import Blueprint, Flask, render_template, request,session
 from Service.View import generateReport
 from Service.View import viewAllEngines
 from Service.View import viewTodayEngines
 from Service.View import inventoryPayment
 viewController = Blueprint("/", __name__, url_prefix="/view")
 
-'''
-@viewController.route("/")
-def main():
-    return render_template("/main.html")
-'''
+@viewController.before_request
+def beforeRequest():
+    try:
+        if 'userid' not in session:
+            return "<script>alert('로그인 후 이용해주시길 바랍니다.');location.href='/';</script>"
+    except:
+        return "location.href='/';</script>"
 
 @viewController.route("/report", methods=['GET', 'POST'])
 def generateReports():
@@ -19,10 +21,6 @@ def generateReports():
         startdate = request.form.get("startdate")
         enddate = request.form.get("enddate")
         table = generateReport.getReport(startdate, enddate)
-        if table == -1:
-            table = "[ERROR] 데이터 베이스 연결 오류"
-        elif table == -2:
-            table = "[ERROR] 올바르지 않은 날짜 형식입니다."
         return render_template("/report.html", table=table, startdate=str(startdate), enddate=str(enddate))
 
 @viewController.route("/allEngines", methods=['GET', 'POST'])

@@ -6,21 +6,21 @@ from datetime import date, timedelta
 def getReport(start, end):
     #올바르지않은 날짜 형식
     if len(start) != 10 or len(end) != 10:
-        return -2
+        return "[ERROR] 올바르지 않은 날짜 형식"
     start = str(start[0:4] + start[5:7] + start[8:10])
     end = str(end[0:4] + end[5:7] + end[8:10])
     #시작일이 종료일 보다 큰 경우
     if int(start) > int(end):
-        return -2
+        return "[ERROR] 종료일이 시작일보다 커야합니다."
 
     #ENGINE DB 데이터 가져오기
     enData = en.EngineRepository('sd', end)
     if enData == -1:
-        return -1
+        return "[ERROR] 데이터 베이스 연결 오류"
     #OUTPUTENGINE DB 데이터 가져오기
     oenData = oen.OutputEngineRepository('sd', (start, end))
     if oenData == -1:
-        return -1
+        return "[ERROR] 데이터 베이스 연결 오류"
 
 
     # 날짜 테이블

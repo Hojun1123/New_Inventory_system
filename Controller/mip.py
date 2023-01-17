@@ -1,7 +1,15 @@
 from Service.Mip import addMIP, getMIP, deleteMIP
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, session
 
 mipController = Blueprint("mip", __name__, url_prefix="/mip")
+
+@mipController.before_request
+def beforeRequest():
+    try:
+        if session['userid'] != 'manager':
+            return "<script>alert('권한이 없습니다.');location.href='/view/todayEngines';</script>"
+    except:
+        return "<script>alert('로그인 후 이용해주시길 바랍니다.');location.href='/';</script>"
 
 
 @mipController.route("/addMIP", methods=['GET', 'POST'])
@@ -11,7 +19,6 @@ def addMip():
         t = request.form.get("type")
         r = addMIP.inputMIP([m, t])
         mipList = getMIP.getAllMIP()
-        print(r)
         if r == -1:
             flash("[ERROR] 데이터 베이스 연결 오류")
         elif r == -2:

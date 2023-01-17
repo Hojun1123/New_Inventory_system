@@ -18,18 +18,6 @@
         <script type="text/javascript">alert("{{messages[-1]}}");</script>
     {% endif %}
 {% endwith %}
-{% if not session["userid"] %}
-    <script>
-        alert("로그인이 필요합니다");
-        location.href = "/";
-    </script>
-{% endif %}
-{% if session["userid"] != 'manager' %}
-    <script>
-        alert("해당페이지는 관리자만 접근가능합니다.");
-        location.href = "/view/todayEngines";
-    </script>
-{% endif %}
 
 <script>
     function askDelete(id){

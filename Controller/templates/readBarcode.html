@@ -10,13 +10,7 @@
 <body>
 <!--login.html 에서 nav bar 제거 및 login section 높이 수정-->
 <main>
-<!--세션유무확인-->
-{% if not session["userid"] %}
-    <script>
-        alert("로그인이 필요합니다");
-        location.href = "/";
-    </script>
-{% endif %}
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <script type="text/javascript">alert("{{messages[-1]}}");</script>
