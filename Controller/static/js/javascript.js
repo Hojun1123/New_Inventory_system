@@ -181,5 +181,3 @@ function filter_rows() {
     })
 }
 
-
-

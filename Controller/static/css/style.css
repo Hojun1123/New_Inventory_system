@@ -60,6 +60,7 @@
 }
 
 html {
+    min-width: 1230px;
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -11965,8 +11966,9 @@ textarea.form-control-lg {
     color: #212529;
 }
 
-.nav-dropdown-item {
-    color: black;
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
 }
 
 /*datepicker css*/
@@ -11999,6 +12001,8 @@ textarea.form-control-lg {
 .current-date-wrapper {
     width: 72vw;
     margin: 0 auto;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 /*dailylist table css*/
@@ -12016,9 +12020,10 @@ textarea.form-control-lg {
     table-layout: fixed;
     border-collapse: collapse;
     display: block;
+    width: 100%;
 }
 
-.daily-table tbody tr:nth-child(odd) {
+.daily-table tbody tr:nth-child(even) {
     background-color: rgba(0, 0, 0, .1);
 }
 
@@ -12028,14 +12033,20 @@ textarea.form-control-lg {
     background: white;
 }
 
-.daily-table tbody {
+.daily-table td:nth-child(10) {
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
 }
 
 .daily-table th, .daily-table td {
     width: 115px;
+    height: 40px;
 }
 
-/*inventory.html table css*/
+/*inventory table css*/
 .inventory-table-container {
     border: 1px solid black;
     width: 80vw;
@@ -12049,10 +12060,9 @@ textarea.form-control-lg {
     table-layout: fixed;
     border-collapse: collapse;
     display: block;
-
 }
 
-.inventory-table tbody tr:nth-child(odd) {
+.inventory-table tbody tr:nth-child(even) {
     background-color: rgba(0, 0, 0, .1);
 }
 
@@ -12062,24 +12072,64 @@ textarea.form-control-lg {
     background: white;
 }
 
-.inventory-table tbody {
-}
+
 
 .inventory-table th,
 .inventory-table td {
-    width: 115px;
+    min-width: 80px;
+    height: 46px;
 }
 
-.reload-btn {
+.all-engine-table td:nth-child(10){
+    width: 600px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     display: inline-block;
-    background: white;
-    border: 1px solid #a3a3a3;
-    border-radius: 0.25rem;
-    font-size: 12px;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    justify-content: flex-end;
-    padding: 3px;
-    margin: 0px 20px;
+}
+
+.edit-engine-table td:nth-child(9) {
+    width: 550px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.edit-output-engine-table td:nth-child(10) {
+    width: 450px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/*.edit-btn {*/
+/*    display: inline-block;*/
+/*    background: white;*/
+/*    border: 1px solid #a3a3a3;*/
+/*    border-radius: 0.25rem;*/
+/*    font-size: 12px;*/
+/*    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
+/*    justify-content: flex-end;*/
+/*}*/
+
+.edit-btn {
+        color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+}
+
+.edit-btn:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
 }
 
 .clicked {
@@ -12178,7 +12228,7 @@ table > tbody > tr > th:first-child:before {
 
 /*불량 엔진 화면*/
 .invalid-table-nav {
-    align-items : center;
+    align-items: center;
     height: 30px;
     width: 80vw;
     margin: 0 auto;
@@ -12211,4 +12261,3 @@ table > tbody > tr > th:first-child:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
-
