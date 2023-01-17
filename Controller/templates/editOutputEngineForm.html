@@ -14,32 +14,28 @@
 <body>
 <!--세션유무확인-->
 {% if not session["userid"] %}
-    <script>
-        alert("로그인이 필요합니다");
-        location.href = "/";
-    </script>
+<script>
+    alert("로그인이 필요합니다");
+    location.href = "/";
+</script>
 {% endif %}
 
 {% if session["userid"] != 'manager' %}
-    <script>
-        alert("해당페이지는 관리자만 접근가능합니다.");
-        location.href = "/view/todayEngines";
-    </script>
+<script>
+    alert("해당페이지는 관리자만 접근가능합니다.");
+    location.href = "/view/todayEngines";
+</script>
 {% endif %}
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script type="text/javascript">alert("{{messages[-1]}}");</script>
-    {% endif %}
+{% if messages %}
+<script type="text/javascript">alert("{{messages[-1]}}");</script>
+{% endif %}
 {% endwith %}
 
-<nav class="navbar navbar-expand-sm navbar-light border-bottom navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/view/todayEngines">SJA.inc</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/view/report">기간별 통계</a>
@@ -50,39 +46,47 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/view/inventoryPayment">재고수불부</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/addEngine">엔진 입고</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">입고</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/engine/addEngine">엔진 입고</a></li>
+                        <li><a class="dropdown-item" href="/engine/editEngines">입고 엔진 수정 & 삭제</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/releaseEngine">엔진 출고</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink02" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">출고</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink02">
+                        <li><a class="dropdown-item" href="/engine/releaseEngine">엔진 출고</a></li>
+                        <li><a class="dropdown-item" href="/engine/editOutputEngines">출고 엔진 수정 & 삭제</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/editEngines">입고 엔진 수정 & 삭제</a>
-                </li>
-                <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/engine/editOutputEngines">출고 엔진 수정 & 삭제</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mip/addMIP">MIP 추가</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink03" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">추가</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink03">
+                        <li><a class="dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
+                        <li><a class="dropdown-item" href="/engine//setInvalidEngine">불량 엔진 추가</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
         <div>
-            <button type="button" onclick="location.href='/etc/enginedbExport'" class="reload-btn">
-                입고엔진액셀Export(테스트)
+            <button type="button" onclick="location.href='/etc/enginedbExport'" class="btn btn-success mx-1">
+                Excel-입고
             </button>
-            <button type="button" onclick="location.href='/etc/outputenginedbExport'" class="reload-btn">
-                출고엔진액셀Export(테스트)
+            <button type="button" onclick="location.href='/etc/outputenginedbExport'" class="btn btn-success mx-1">
+                Excel-출고
             </button>
-            <button class="logout-btn" onclick="location.href='/logout'">log out</button>
+            <button class="btn btn-dark mx-3" onclick="location.href='/logout'">Log out</button>
         </div>
     </div>
 </nav>
 
-
-<section class="d-flex flex-wrap mt-5 mx-5 addmip-section justify-content-around">
-    <div class="mt-4 mip-card">
-        <div class="container py-5">
+<section class="d-flex flex-wrap mt-3 mx-5 addmip-section justify-content-around">
+    <div class="mip-card">
+        <div class="container">
             <div class="row d-flex justify-content-center align-items-center ">
                 <div class="col col-md-10">
                     <div class="card" style="border-radius: 1rem;">
@@ -90,51 +94,52 @@
                             <div class="card-body p-sm-4 text-black m-3">
 
                                 <form action="/engine/editOutputEngineForm?eid={{ engine[0] }}" method="post">
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="barcode" class="form-control form-control-sm"
-                                               placeholder="{{ engine[0] }}" value="{{ engine[0] }}" readonly>
+                                               placeholder="{{ engine[0] }}" value="{{ engine[0] }}" disabled>
                                         <label class="form-label data-setting-comment">바코드</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="mip" class="form-control form-control-sm"
                                                placeholder="{{ engine[1] }}" value="{{ engine[1] }}" autofocus>
                                         <label class="form-label data-setting-comment">MIP</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="type" class="form-control form-control-sm"
                                                placeholder="{{ engine[2] }}" value="{{ engine[2] }}" autofocus>
-                                        <label class="form-label data-setting-comment">타입</label>
+                                        <label class="form-label data-setting-comment">종류</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="input_date" class="form-control form-control-sm"
                                                placeholder="{{ engine[3] }}" value="{{ engine[3] }}" autofocus>
                                         <label class="form-label data-setting-comment">입고일</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="packing_date" class="form-control form-control-sm"
                                                placeholder="{{ engine[4] }}" value="{{ engine[4] }}" autofocus>
                                         <label class="form-label data-setting-comment">포장일</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="output_date" class="form-control form-control-sm"
                                                placeholder="{{ engine[5] }}" value="{{ engine[5] }}" autofocus>
                                         <label class="form-label data-setting-comment">출고일</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
+                                        <input type="text" name="destination" class="form-control form-control-sm"
+                                               placeholder="{{ engine[8] }}" value="{{ engine[8] }}" autofocus>
+                                        <label class="form-label data-setting-comment">출고지</label>
+                                    </div>
+                                    <div class="mb-2">
                                         <input type="text" name="errorflag" class="form-control form-control-sm"
                                                placeholder="{{ engine[6] }}" value="{{ engine[6] }}" autofocus>
-                                        <label class="form-label data-setting-comment">불량엔진</label>
+                                        <label class="form-label data-setting-comment">상태</label>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <input type="text" name="exp" class="form-control form-control-sm"
                                                placeholder="{{ engine[7] }}" value="{{ engine[7] }}" autofocus>
                                         <label class="form-label data-setting-comment">비고</label>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" name="destination" class="form-control form-control-sm"
-                                               placeholder="{{ engine[8] }}" value="{{ engine[8] }}" autofocus>
-                                        <label class="form-label data-setting-comment">불출지</label>
-                                    </div>
+
                                     <div class="mb-3">
                                         <button class="btn btn-dark btn-lg data-setting-btn-block" type="submit">저장
                                         </button>

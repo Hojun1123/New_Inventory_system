@@ -14,39 +14,35 @@
 <body>
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script type="text/javascript">alert("{{messages[-1]}}");</script>
-    {% endif %}
+{% if messages %}
+<script type="text/javascript">alert("{{messages[-1]}}");</script>
+{% endif %}
 {% endwith %}
 {% if not session["userid"] %}
-    <script>
-        alert("로그인이 필요합니다");
-        location.href = "/";
-    </script>
+<script>
+    alert("로그인이 필요합니다");
+    location.href = "/";
+</script>
 {% endif %}
 {% if session["userid"] != 'manager' %}
-    <script>
-        alert("해당페이지는 관리자만 접근가능합니다.");
-        location.href = "/view/todayEngines";
-    </script>
+<script>
+    alert("해당페이지는 관리자만 접근가능합니다.");
+    location.href = "/view/todayEngines";
+</script>
 {% endif %}
 
 <script>
-    function askDelete(id){
-        if(confirm("해당 MIP를 정말 삭제하시겠습니까?")) {
-            location.href="/mip/deleteMIP?id="+id;
+    function askDelete(id) {
+        if (confirm("해당 MIP를 정말 삭제하시겠습니까?")) {
+            location.href = "/mip/deleteMIP?id=" + id;
         }
     }
 </script>
 
-<nav class="navbar navbar-expand-sm navbar-light border-bottom navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/view/todayEngines">SJA.inc</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/view/report">기간별 통계</a>
@@ -57,31 +53,40 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/view/inventoryPayment">재고수불부</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/addEngine">엔진 입고</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">입고</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/engine/addEngine">엔진 입고</a></li>
+                        <li><a class="dropdown-item" href="/engine/editEngines">입고 엔진 수정 & 삭제</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/releaseEngine">엔진 출고</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink02" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">출고</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink02">
+                        <li><a class="dropdown-item" href="/engine/releaseEngine">엔진 출고</a></li>
+                        <li><a class="dropdown-item" href="/engine/editOutputEngines">출고 엔진 수정 & 삭제</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/editEngines">입고 엔진 수정 & 삭제</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/engine/editOutputEngines">출고 엔진 수정 & 삭제</a>
-                </li>
-                <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/mip/addMIP">MIP 추가</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink03" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">추가</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink03">
+                        <li><a class="dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
+                        <li><a class="dropdown-item" href="/engine//setInvalidEngine">불량 엔진 추가</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
         <div>
-            <button type="button" onclick="location.href='/etc/enginedbExport'" class="reload-btn">
-                입고엔진액셀Export(테스트)
+            <button type="button" onclick="location.href='/etc/enginedbExport'" class="btn btn-success mx-1">
+                Excel-입고
             </button>
-            <button type="button" onclick="location.href='/etc/outputenginedbExport'" class="reload-btn">
-                출고엔진액셀Export(테스트)
+            <button type="button" onclick="location.href='/etc/outputenginedbExport'" class="btn btn-success mx-1">
+                Excel-출고
             </button>
-            <button class="logout-btn" onclick="location.href='/logout'">log out</button>
+            <button class="btn btn-dark mx-3" onclick="location.href='/logout'">Log out</button>
         </div>
     </div>
 </nav>
@@ -106,12 +111,12 @@
                                     <div class="mb-3">
                                         <input type="text" name="mip" id="mip" class="form-control form-control-sm"
                                                placeholder="" autofocus>
-                                        <label class="form-label data-setting-comment" for="mip">mip를 입력해주세요</label>
+                                        <label class="form-label data-setting-comment" for="mip">MIP를 입력해주세요.</label>
                                     </div>
                                     <div class="mb-2">
                                         <input type="text" name="type" id="type" class="form-control form-control-sm"
                                                placeholder="" autofocus>
-                                        <label class="form-label data-setting-comment" for="type">기종을 입력해주세요</label>
+                                        <label class="form-label data-setting-comment" for="type">기종을 입력해주세요.</label>
                                     </div>
                                     <!--<a class="small text-muted" href="#!">abc</a>-->
                                     <div class="mb-3">
@@ -119,11 +124,6 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="mb-2">
-                                    <button class="btn btn-dark btn-lg btn-block data-setting-btn-block" type="button"
-                                            onclick="location.href='/Controller'">홈화면
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -138,18 +138,20 @@
             <thead>
             <th>번호</th>
             <th>MIP</th>
-            <th>기종</th>
+            <th>종류</th>
             <th>삭제</th>
             </thead>
             <tbody>
             {% for a in mipList %}
-                <tr>
-                    <th scope="row"></th>
-                    {% for b in a %}
-                        <td>{{ b }}</td>
-                    {% endfor %}
-                        <td><button onclick="askDelete('{{a[0]}}')">삭제</button></td>
-                </tr>
+            <tr>
+                <th scope="row"></th>
+                {% for b in a %}
+                <td>{{ b }}</td>
+                {% endfor %}
+                <td>
+                    <button onclick="askDelete('{{a[0]}}')" class="edit-btn">삭제</button>
+                </td>
+            </tr>
             {% endfor %}
             </tbody>
         </table>
