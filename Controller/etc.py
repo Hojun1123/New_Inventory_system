@@ -1,6 +1,14 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, session
 from Service.Etc import exportExcel
 etcController = Blueprint("etc", __name__, url_prefix="/etc")
+
+@etcController.before_request
+def beforeRequest():
+    try:
+        if 'userid' not in session:
+            return "<script>alert('로그인 후 이용해주시길 바랍니다.');location.href='/';</script>"
+    except:
+        return "location.href='/';</script>"
 
 @etcController.route("/enginedbExport")
 def engineDBExport():
@@ -11,7 +19,7 @@ def engineDBExport():
         flash("[ERROR] 엑셀 파일 변환 오류")
     else:
         flash(result + " 로 저장되었습니다.")
-    return render_template("./main.html")
+    return render_template("./viewTodayResult.html")
 
 @etcController.route("/outputenginedbExport")
 def outputEngineDBExport():
@@ -22,4 +30,4 @@ def outputEngineDBExport():
         flash("[ERROR] 엑셀 파일 변환 오류")
     else:
         flash(result + " 로 저장되었습니다.")
-    return render_template("./main.html")
+    return render_template("./viewTodayResult.html")

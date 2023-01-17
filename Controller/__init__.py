@@ -4,6 +4,7 @@ from . import engine
 from . import mip
 from . import view
 from . import etc
+from . import admin
 
 app = Flask(__name__)
 
@@ -17,3 +18,5 @@ app.register_blueprint(mip.mipController)
 app.register_blueprint(view.viewController)
 # 기타 페이지, 바코드 인쇄, 액셀 파일 생성 등
 app.register_blueprint(etc.etcController)
+# 관리자 권한으로 실행 가능한 페이지들
+app.register_blueprint(admin.engineController)
