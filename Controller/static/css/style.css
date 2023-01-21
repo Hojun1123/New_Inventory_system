@@ -336,7 +336,7 @@ tr,
 td,
 th {
     border-color: inherit;
-    border-style: solid;
+    border-style: none solid solid solid;
     border-width: 0;
 }
 
@@ -12073,9 +12073,11 @@ textarea.form-control-lg {
 }
 
 
-
+/*.inventory-table thead,*/
+/*.inventory-table tbody,*/
 .inventory-table th,
 .inventory-table td {
+    /*border-style: none solid;*/
     min-width: 80px;
     height: 46px;
 }
