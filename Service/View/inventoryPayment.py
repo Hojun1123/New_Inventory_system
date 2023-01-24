@@ -5,7 +5,7 @@ from collections import defaultdict
 from datetime import datetime
 
 # {types : {mip : n, mip2: n, ...}, ...}
-def makeMIPDict():
+def makeMIPDict(sd, ed):
     mip = dao.MIPRepository('getMIP')
     typeDict = defaultdict(dict)
     # mip/type dict
@@ -16,6 +16,34 @@ def makeMIPDict():
         mips = r[0]
         types = r[1]
         typeDict[types][mips] = 0
+
+    # type: mip, types not in mipDatabase
+    eng = en.EngineRepository('sd2', sd)
+    engOut = oen.OutputEngineRepository('sd2', [sd, ed])
+    for i in eng:
+        mips = i[1]
+        types = i[2]
+        typeDict[types][mips] = 0
+    for i in engOut:
+        mips = i[1]
+        types = i[2]
+        typeDict[types][mips] = 0
+    eng = en.EngineRepository('betweenDate', [sd, ed])
+    engOut = oen.OutputEngineRepository('betweenDateI', [sd, ed])
+    for i in eng:
+        mips = i[1]
+        types = i[2]
+        typeDict[types][mips] = 0
+    for i in engOut:
+        mips = i[1]
+        types = i[2]
+        typeDict[types][mips] = 0
+    engOut = oen.OutputEngineRepository('betweenDateO', [sd, ed])
+    for i in engOut:
+        mips = i[1]
+        types = i[2]
+        typeDict[types][mips] = 0
+
 
     return typeDict
 
@@ -62,16 +90,17 @@ def outputInventory(outputInv, sd, ed):
 # method = get
 def paymentListGet():
     ret = []
-    # baseInv, inputInv, outputInv
-    baseInv = makeMIPDict()
-    inputInv = makeMIPDict()
-    outputInv = makeMIPDict()
     startDate, endDate = datetime.now(), datetime.now()
     startDate, endDate = str(startDate), str(endDate)
     sd = str(startDate[0:4] + startDate[5:7] + startDate[8:10])
     ed = str(endDate[0:4] + endDate[5:7] + endDate[8:10])
-#    sd = "20221230"
-#    ed = "20221230"
+    #    sd = "20221230"
+    #    ed = "20221230"
+    # baseInv, inputInv, outputInv
+    baseInv = makeMIPDict(sd, ed)
+    inputInv = makeMIPDict(sd, ed)
+    outputInv = makeMIPDict(sd, ed)
+
 
     baseInv = baseInventory(baseInv, sd, ed)
     inputInv = inputInventory(inputInv, sd, ed)
@@ -92,15 +121,16 @@ def paymentListGet():
 # method = post
 def paymentListPost(startDate, endDate):
     ret = []
-    # baseInv, inputInv, outputInv
-    baseInv = makeMIPDict()
-    inputInv = makeMIPDict()
-    outputInv = makeMIPDict()
     startDate, endDate = str(startDate), str(endDate)
     sd = str(startDate[0:4] + startDate[5:7] + startDate[8:10])
     ed = str(endDate[0:4] + endDate[5:7] + endDate[8:10])
-#    sd = "20221230"
-#    ed = "20221230"
+    #    sd = "20221230"
+    #    ed = "20221230"
+    # baseInv, inputInv, outputInv
+    baseInv = makeMIPDict(sd, ed)
+    inputInv = makeMIPDict(sd, ed)
+    outputInv = makeMIPDict(sd, ed)
+
 
     baseInv = baseInventory(baseInv, sd, ed)
     inputInv = inputInventory(inputInv, sd, ed)
