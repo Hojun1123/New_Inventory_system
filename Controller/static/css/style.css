@@ -12073,8 +12073,6 @@ textarea.form-control-lg {
 }
 
 
-/*.inventory-table thead,*/
-/*.inventory-table tbody,*/
 .inventory-table th,
 .inventory-table td {
     /*border-style: none solid;*/
@@ -12090,6 +12088,7 @@ textarea.form-control-lg {
     display: inline-block;
 }
 
+
 .edit-engine-table td:nth-child(9) {
     width: 550px;
     text-overflow: ellipsis;
@@ -12104,6 +12103,31 @@ textarea.form-control-lg {
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
+}
+
+.daily-table td:nth-child(10):hover {
+    min-height: 40px;
+    white-space: normal;
+    height: auto;
+
+    /* 영어 글자 오류 방지 */
+    word-wrap: break-word;      /* IE 5.5-7 */
+    white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+    white-space: pre-wrap;      /* current browsers */
+}
+.all-engine-table td:nth-child(10):hover,
+.edit-engine-table td:nth-child(9):hover,
+.edit-output-engine-table td:nth-child(10):hover,
+.invalid-table td:nth-child(9):hover
+{
+    min-height: 46px;
+    white-space: normal;
+    height: auto;
+
+    /* 영어 글자 오류 방지 */
+    word-wrap: break-word;      /* IE 5.5-7 */
+    white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+    white-space: pre-wrap;      /* current browsers */
 }
 
 /*.edit-btn {*/
@@ -12248,13 +12272,46 @@ table > tbody > tr > th:first-child:before {
 
 }
 
-.invalid-table {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-    border: 1px solid #c0c0c0;
+.invalid-table-container {
+    border: 1px solid black;
     width: 80vw;
-    min-width: 1100px;
+    min-width: 1200px;
     margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 35vh;
 }
+
+.invalid-table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    display: block;
+}
+
+.invalid-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.invalid-table th,
+.invalid-table td {
+    /*border-style: none solid;*/
+    min-width: 80px;
+    height: 46px;
+}
+
+.invalid-table td:nth-child(9) {
+    width: 730px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/*.invalid-table thead {*/
+/*    position: sticky;*/
+/*    top: 0;*/
+/*    background: white;*/
+/*}*/
 
 /* 테이블 수정 시 input박스 크기 */
 .input-data {

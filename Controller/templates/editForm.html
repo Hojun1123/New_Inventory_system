@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>재고 관리 프로그램</title>
     <meta charset="UTF-8">
@@ -13,16 +13,16 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
     <script type='text/javascript'
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
+    <script src="../static/js/javascript.js"></script>
     <!--dropdown-->
     <script src="../static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script type="text/javascript">alert("{{messages[-1]}}");</script>
-    {% endif %}
+{% if messages %}
+<script type="text/javascript">alert("{{messages[-1]}}");</script>
+{% endif %}
 {% endwith %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
@@ -40,7 +40,8 @@
                     <a class="nav-link" href="/view/inventoryPayment">재고수불부</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink"
+                       role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">입고</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" href="/engine/addEngine">엔진 입고</a></li>
@@ -104,16 +105,24 @@
                                         <label class="form-label data-setting-comment">기종</label>
                                     </div>
                                     <div class="mb-2 input-group date">
-                                        <input name="input_date" type="text" class="form-control form-control-sm" value="{{ engine[3] }}"
-                                               id="startDatepicker"
+                                        <input name="input_date" type="text" class="form-control form-control-sm"
+                                               value="{{ engine[3] }}"
+                                               id="startDatepicker" style="width: 100%"
                                                autocomplete='off' placeholder="{{ engine[3] }}" autofocus>
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <label class="form-label data-setting-comment" style="display: block">입고일</label>
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar"></i></span>
+                                        <label class="form-label data-setting-comment"
+                                               style="display: block">입고일</label>
                                     </div>
-                                    <div class="mb-2">
-                                        <input type="text" name="packing_date" class="form-control form-control-sm"
-                                               placeholder="{{ engine[4] }}" value="{{ engine[4] }}" autofocus>
-                                        <label class="form-label data-setting-comment">포장일</label>
+                                    <div class="mb-2 input-group date">
+                                        <input name="packing_date" type="text" class="form-control form-control-sm"
+                                               value="{{ engine[4] }}"
+                                               id="packDatepicker" style="width: 100%"
+                                               autocomplete='off' placeholder="{{ engine[4] }}" autofocus>
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-calendar"></i></span>
+                                        <label class="form-label data-setting-comment"
+                                               style="display: block">포장일</label>
                                     </div>
                                     <div class="mb-2">
                                         <input type="text" name="location" class="form-control form-control-sm"
@@ -121,8 +130,16 @@
                                         <label class="form-label data-setting-comment">위치</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="text" name="errorflag" class="form-control form-control-sm"
-                                               placeholder="{{ engine[7] }}" value="{{ engine[7] }}" autofocus>
+                                        <div class="form-control form-control-sm">
+                                            <label style="width: 20%">
+                                                <input type="checkbox" name="errorflag" value="{{ engine[7] }}" placeholder="{{ engine[7] }}"
+                                                       onclick="clickCheck(this)" autofocus>정상
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="errorflag" value="{{ engine[7] }}" placeholder="{{ engine[7] }}"
+                                                       onclick="clickCheck(this)" autofocus>불량
+                                            </label>
+                                        </div>
                                         <label class="form-label data-setting-comment">상태</label>
                                     </div>
                                     <div class="mb-2">
@@ -158,7 +175,7 @@
             autoclose: true,
             format: "yyyy-mm-dd",
             language: "kr",
-            endDate: '0d',
+            // endDate: '0d',
             disableTouchKeyboard: false
         });
     });
