@@ -24,7 +24,7 @@ def getAllEngines(start, end):
     for i in enData:
         barcode, mip, types, inputDate, packingDate, gid, location, errorFlag, exp = i
         errorFlag = "불량엔진" if errorFlag > 0 else ""
-        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), "-", "-", errorFlag, exp])
+        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate), "", "", errorFlag, exp])
     for i in oenData:
         barcode, mip, types, inputDate, packingDate, outputDate, errorFlag, exp, destination = i
         errorFlag = "불량엔진" if errorFlag > 0 else ""

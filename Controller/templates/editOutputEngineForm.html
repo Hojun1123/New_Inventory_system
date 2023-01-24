@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="../static/css/style.css">
-
+    <script src="../static/js/javascript.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
     <!--dropdown-->
@@ -71,6 +71,7 @@
     </div>
 </nav>
 
+<br><br><br><br>
 <section class="d-flex flex-wrap mt-3 mx-5 addmip-section justify-content-around">
     <div class="mip-card">
         <div class="container">
@@ -117,8 +118,16 @@
                                         <label class="form-label data-setting-comment">출고지</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="text" name="errorflag" class="form-control form-control-sm"
-                                               placeholder="{{ engine[6] }}" value="{{ engine[6] }}" autofocus>
+                                        <div class="form-control form-control-sm">
+                                            <label style="width: 20%">
+                                                <input type="checkbox" name="errorflag" value="0" id="check0"
+                                                       onclick="clickCheck(this)" autofocus>정상
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="errorflag" value="1" id="check1"
+                                                       onclick="clickCheck(this)" autofocus>불량
+                                            </label>
+                                        </div>
                                         <label class="form-label data-setting-comment">상태</label>
                                     </div>
                                     <div class="mb-2">
@@ -145,5 +154,16 @@
         </div>
     </div>
 </section>
+    <script>
+        checkValue = {{ engine[6] }};
+        if(checkValue == '0') {
+            document.getElementById("check0").checked = true;
+            document.getElementById("check1").checked = false;
+        }
+        else{
+            document.getElementById("check0").checked = false;
+            document.getElementById("check1").checked = true;
+        }
+    </script>
 </body>
 </html>

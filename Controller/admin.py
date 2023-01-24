@@ -39,7 +39,7 @@ def editForm():
             flash("[ERROR] 데이터 베이스 오류")
             return "<script>location.href='/engine/editEngines';</script>"
         else:
-            return render_template("/editForm.html", engine=result[0])
+            return render_template("/editForm.html", engine=result)
     else:
         eid = request.args.get('eid')
         input_date = request.form.get('input_date')
@@ -112,7 +112,7 @@ def editOutputEngineForm():
             flash("[ERROR] 데이터 베이스 오류")
             return "<script>location.href='/engine/editOutputEngines';</script>"
         else:
-            return render_template("/editOutputEngineForm.html", engine=result[0])
+            return render_template("/editOutputEngineForm.html", engine=result)
     else:
         eid = request.args.get('eid')
         input_date = request.form.get('input_date')
