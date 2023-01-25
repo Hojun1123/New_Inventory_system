@@ -20,7 +20,7 @@ def getErrorEngineList():
     engineList = []
     for i in enData:
         barcode, mip, types, inputDate, packingDate, exp = i
-        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate),"-" ,"-", exp])
+        engineList.append([barcode, mip, types, stringToDate(inputDate), stringToDate(packingDate),"" ,"", exp])
     # 바코드, mip, 타입, 입고일, 포장일, 출고일, 목적지, 비고란 : 8
     for i in oenData:
         barcode, mip, types, inputDate, packingDate, outputDate, destination, exp = i
