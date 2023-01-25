@@ -17,7 +17,7 @@ def OutputEngineRepository(act, data):
         return 1
 
     def select():
-        sql = "SELECT * FROM OUTPUTENGINE;"
+        sql = "SELECT * FROM OUTPUTENGINE ORDER BY output_date DESC, mip;"
         try:
             cursor.execute(sql)
             return cursor.fetchall()
