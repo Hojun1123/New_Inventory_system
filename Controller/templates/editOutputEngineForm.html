@@ -5,18 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="../static/css/style.css">
-    <script src="../static/js/javascript.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+    <script type='text/javascript'
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="../static/js/javascript.js"></script>
     <!--dropdown-->
     <script src="../static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script type="text/javascript">alert("{{messages[-1]}}");</script>
-    {% endif %}
+{% if messages %}
+<script type="text/javascript">alert("{{messages[-1]}}");</script>
+{% endif %}
 {% endwith %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
@@ -42,7 +48,8 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink02" role="button"
+                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink02"
+                       role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">출고</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink02">
                         <li><a class="dropdown-item" href="/engine/releaseEngine">엔진 출고</a></li>
@@ -98,48 +105,64 @@
                                         <label class="form-label data-setting-comment">기종</label>
                                     </div>
                                     <div class="mb-2">
-                                        <input type="text" name="input_date" class="form-control form-control-sm"
-                                               placeholder="{{ engine[3] }}" value="{{ engine[3] }}" autofocus>
-                                        <label class="form-label data-setting-comment">입고일</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <input type="text" name="packing_date" class="form-control form-control-sm"
-                                               placeholder="{{ engine[4] }}" value="{{ engine[4] }}" autofocus>
-                                        <label class="form-label data-setting-comment">포장일</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <input type="text" name="output_date" class="form-control form-control-sm"
-                                               placeholder="{{ engine[5] }}" value="{{ engine[5] }}" autofocus>
-                                        <label class="form-label data-setting-comment">출고일</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <input type="text" name="destination" class="form-control form-control-sm"
-                                               placeholder="{{ engine[8] }}" value="{{ engine[8] }}" autofocus>
-                                        <label class="form-label data-setting-comment">출고지</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <div class="form-control form-control-sm">
-                                            <label style="width: 20%">
-                                                <input type="checkbox" name="errorflag" value="0" id="check0"
-                                                       onclick="clickCheck(this)" autofocus>정상
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="errorflag" value="1" id="check1"
-                                                       onclick="clickCheck(this)" autofocus>불량
-                                            </label>
+                                        <div class="mb-2 input-group date">
+                                            <input name="input_date" type="text" class="form-control form-control-sm"
+                                                   value="{{ engine[3] }}"
+                                                   id="startDatepicker" style="width: 100%"
+                                                   autocomplete='off' placeholder="{{ engine[3] }}" autofocus>
+                                            <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-calendar"></i></span>
+                                            <label class="form-label data-setting-comment"
+                                                   style="display: block">입고일</label>
                                         </div>
-                                        <label class="form-label data-setting-comment">상태</label>
-                                    </div>
-                                    <div class="mb-2">
-                                        <input type="text" name="exp" class="form-control form-control-sm"
-                                               placeholder="{{ engine[7] }}" value="{{ engine[7] }}" autofocus>
-                                        <label class="form-label data-setting-comment">비고</label>
-                                    </div>
+                                        <div class="mb-2 input-group date">
+                                            <input name="packing_date" type="text" class="form-control form-control-sm"
+                                                   value="{{ engine[4] }}"
+                                                   id="packDatepicker" style="width: 100%"
+                                                   autocomplete='off' placeholder="{{ engine[4] }}" autofocus>
+                                            <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-calendar"></i></span>
+                                            <label class="form-label data-setting-comment"
+                                                   style="display: block">포장일</label>
+                                        </div>
+                                        <div class="mb-2 input-group date">
+                                            <input name="output_date" type="text" class="form-control form-control-sm"
+                                                   value="{{ engine[5] }}"
+                                                   id="endDatepicker" style="width: 100%"
+                                                   autocomplete='off' placeholder="{{ engine[5] }}" autofocus>
+                                            <span class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-calendar"></i></span>
+                                            <label class="form-label data-setting-comment"
+                                                   style="display: block">출고일</label>
+                                        </div>
+                                        <div class="mb-2">
+                                            <input type="text" name="destination" class="form-control form-control-sm"
+                                                   placeholder="{{ engine[8] }}" value="{{ engine[8] }}" autofocus>
+                                            <label class="form-label data-setting-comment">출고지</label>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="form-control form-control-sm">
+                                                <label style="width: 20%">
+                                                    <input type="checkbox" name="errorflag" value="0" id="check0"
+                                                           onclick="clickCheck(this)" autofocus>정상
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="errorflag" value="1" id="check1"
+                                                           onclick="clickCheck(this)" autofocus>불량
+                                                </label>
+                                            </div>
+                                            <label class="form-label data-setting-comment">상태</label>
+                                        </div>
+                                        <div class="mb-2">
+                                            <input type="text" name="exp" class="form-control form-control-sm"
+                                                   placeholder="{{ engine[7] }}" value="{{ engine[7] }}" autofocus>
+                                            <label class="form-label data-setting-comment">비고</label>
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <button class="btn btn-dark btn-lg data-setting-btn-block" type="submit">저장
-                                        </button>
-                                    </div>
+                                        <div class="mb-3">
+                                            <button class="btn btn-dark btn-lg data-setting-btn-block" type="submit">저장
+                                            </button>
+                                        </div>
                                 </form>
                                 <div class="mb-2">
                                     <button class="btn btn-dark btn-lg btn-block data-setting-btn-block" type="button"
@@ -154,16 +177,29 @@
         </div>
     </div>
 </section>
-    <script>
-        checkValue = {{ engine[6] }};
-        if(checkValue == '0') {
-            document.getElementById("check0").checked = true;
-            document.getElementById("check1").checked = false;
-        }
-        else{
-            document.getElementById("check0").checked = false;
-            document.getElementById("check1").checked = true;
-        }
-    </script>
+<script>
+    checkValue = {{ engine[6] }};
+
+    if (checkValue == '0') {
+        document.getElementById("check0").checked = true;
+        document.getElementById("check1").checked = false;
+    } else {
+        document.getElementById("check0").checked = false;
+        document.getElementById("check1").checked = true;
+    }
+</script>
+<script type='text/javascript'>
+    $(function () {
+        $('.input-group.date').datepicker({
+            calendarWeeks: false,
+            todayHighlight: true,
+            autoclose: true,
+            format: "yyyy-mm-dd",
+            language: "kr",
+            // endDate: '0d',
+            disableTouchKeyboard: false
+        });
+    });
+</script>
 </body>
 </html>
