@@ -17,7 +17,7 @@ def EngineRepository(act, data):
         return 1
 
     def select():
-        sql = "SELECT * FROM ENGINE;"
+        sql = "SELECT * FROM ENGINE ORDER BY input_date DESC, mip;"
         try:
             cursor.execute(sql)
             return cursor.fetchall()
