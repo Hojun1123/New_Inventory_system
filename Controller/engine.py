@@ -22,17 +22,14 @@ def beforeRequest():
 @engineController.route("/addEngine", methods=['GET', 'POST'])
 def addEngine():
     if request.method == 'POST':
-        r = addEngines.inputEngine(request.form.get("barcode"))
-        print(r)
-        if r == -1:
-            flash("[ERROR] 데이터 베이스 오류")
-        elif r == -2:
-            flash("[ERROR] 중복 또는 잘못된 데이터 입력")
-        elif r == -3:
-            flash("[ERROR] 잘못된 데이터 입력")
-        return render_template("/readBarcode.html")
+        sucess, err = addEngines.inputEngine(request.files.getlist("file[]"))
+        if sucess == -1 and err == -1:
+            flash('파일에 비어있는 부분이 있습니다. 확인 후 다시 시도해주세요.')
+        else:
+            flash(f'입고성공 : {sucess} 중복엔진 : {err}')
+        return render_template("/inputEngine.html")
     else:
-        return render_template("/readBarcode.html")
+        return render_template("/inputEngine.html")
 
 
 @engineController.route("/releaseEngine", methods=['GET', 'POST'])

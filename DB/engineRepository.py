@@ -10,11 +10,11 @@ def EngineRepository(act, data):
               " (barcode, mip, type, input_date, packing_date, group_id, location, errorflag, exp) " +
               "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);")
         try:
-            cursor.executemany(sql, data)
+            cursor.execute(sql, data)
             connection.commit()
-        except:
-            return -2
-        return 1
+            return 1
+        except :
+            return -1
 
     def select():
         sql = "SELECT * FROM ENGINE ORDER BY input_date DESC, mip;"
