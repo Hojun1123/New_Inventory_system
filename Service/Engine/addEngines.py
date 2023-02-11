@@ -10,6 +10,7 @@ def inputEngine(files):
     err = 0
 
     for file in files:
+        print(file)
         #받은 파일 데이터스트림화 후 csv 컨버트
         file = file.stream.read()
         file = io.StringIO(file.decode("cp949"), newline=None)
@@ -49,5 +50,5 @@ def inputEngine(files):
                 else:
                     err = err + 1
 
-        # 정상완료
-        return sucess, err
+    # 정상완료
+    return sucess, err
