@@ -12023,7 +12023,7 @@ textarea.form-control-lg {
     width: 100%;
 }
 
-.daily-table tbody tr:nth-child(even) {
+.daily-table tbody tr:nth-child(odd) {
     background-color: rgba(0, 0, 0, .1);
 }
 
@@ -12062,7 +12062,7 @@ textarea.form-control-lg {
     display: block;
 }
 
-.inventory-table tbody tr:nth-child(even) {
+.inventory-table tbody tr:nth-child(odd) {
     background-color: rgba(0, 0, 0, .1);
 }
 
@@ -12300,7 +12300,7 @@ table > tbody > tr > th:first-child:before {
 }
 
 .invalid-table td:nth-child(9) {
-    width: 730px;
+    width: 700px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

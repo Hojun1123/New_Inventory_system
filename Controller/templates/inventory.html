@@ -27,7 +27,7 @@
                 $('td:nth-child(7):parent').parent().show();
                 $('tr:nth-child(even)').css({"background": "white"});
                 $("tr:visible").each(function (index) {
-                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.05)" : "rgba(0,0,0,0)");
+                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");
                 });
             });
             //재고 버튼
@@ -36,7 +36,7 @@
                 $('td:nth-child(7):empty').parent().show();
                 $('tr:nth-child(even)').css({"background": "white"});
                 $("tr:visible").each(function (index) {
-                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.05)" : "rgba(0,0,0,0)");
+                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");
                 });
             });
             //출고 버튼
@@ -45,7 +45,7 @@
                 $('td:nth-child(7):parent').parent().show();
                 $('tr:nth-child(even)').css({"background": "white"});
                 $("tr:visible").each(function (index) {
-                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.05)" : "rgba(0,0,0,0)");
+                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");
                 });
             });
 
@@ -163,11 +163,11 @@
         </div>
         <button type="submit" class="datepicker-btn" onclick="return CheckDate()">조회</button>
         <div class="searchFilter d-flex" style="margin-left : auto; margin-right: 10px;">
-            <input class="datepicker-btn mx-2" id="filter0" type="text" placeholder="기종"
+            <input class="datepicker-btn mx-2" id="filter0" type="text" placeholder="바코드"
                    style="width:90px;"/>
             <input class="datepicker-btn mx-2" id="filter1" type="text" placeholder="MIP"
                    style="width:90px;"/>
-            <input class="datepicker-btn mx-2" id="filter2" type="text" placeholder="EID"
+            <input class="datepicker-btn mx-2" id="filter2" type="text" placeholder="기종"
                    style="width:90px;"/>
         </div>
         <div class="d-flex" style="margin-left : auto; margin-right: 10px;">
