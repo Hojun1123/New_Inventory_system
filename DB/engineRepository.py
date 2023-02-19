@@ -153,5 +153,4 @@ def EngineRepository(act, data):
             cursor.close()
         if connection:
             connection.close()
-        print("DB close")
     return result
