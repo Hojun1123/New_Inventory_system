@@ -56,5 +56,4 @@ def MIPRepository(act, data=None):
             cursor.close()
         if connection:
             connection.close()
-        print("DB close")
     return result
