@@ -7,51 +7,53 @@
     <link href="../static/css/style.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="../static/js/bootstrap.bundle.min.js"></script>
-
-        <script>
-            $(document).ready(function () {
-                /**
-                 * 출고exp,groupID,위치,상태 hide()
-                 */
-                /*
-                $("#hidden_col").ready(function () {
-                    //  $('td:nth-child(7), th:nth-child(7)').hide();
-                    $('td:nth-child(7):parent').parent().hide();
-                    $('td:nth-child(8), th:nth-child(8)').hide();
-                    $('td:nth-child(9), th:nth-child(9)').hide();
-                    $('td:nth-child(10), th:nth-child(10)').hide();
-                    $('td:nth-child(11), th:nth-child(11)').hide();
-                })
-                */
-                $("#hidden_col").ready(function () {
-                    $('td:nth-child(7):parent').parent().hide();
-                    $('td:nth-child(7):empty').parent().show();
-                });
-                /**
-                 * 입고, 출고 관계없이 전체 조회
-                 */
-                $("#entireButton").on("click", function () {
-                    $('td:nth-child(7):empty').parent().show();
-                    $('td:nth-child(7):parent').parent().show();
-                });
-                /**
-                 * 현재 재고 중에서 조회
-                 */
-                $("#currentButton").on("click", function () {
-                    $('td:nth-child(7):parent').parent().hide();
-                    $('td:nth-child(7):empty').parent().show();
-                });
-
+    <script src="../static/js/javascript.js"></script>
+    <!--tablesorter-->
+    <script src="../static/js/jquery.tablesorter.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            /**
+             * 출고exp,groupID,위치,상태 hide()
+             */
+            /*
+            $("#hidden_col").ready(function () {
+                //  $('td:nth-child(7), th:nth-child(7)').hide();
+                $('td:nth-child(7):parent').parent().hide();
+                $('td:nth-child(8), th:nth-child(8)').hide();
+                $('td:nth-child(9), th:nth-child(9)').hide();
+                $('td:nth-child(10), th:nth-child(10)').hide();
+                $('td:nth-child(11), th:nth-child(11)').hide();
+            })
+            */
+            $("#hidden_col").ready(function () {
+                $('td:nth-child(7):parent').parent().hide();
+                $('td:nth-child(7):empty').parent().show();
             });
-        </script>
+            /**
+             * 입고, 출고 관계없이 전체 조회
+             */
+            $("#entireButton").on("click", function () {
+                $('td:nth-child(7):empty').parent().show();
+                $('td:nth-child(7):parent').parent().show();
+            });
+            /**
+             * 현재 재고 중에서 조회
+             */
+            $("#currentButton").on("click", function () {
+                $('td:nth-child(7):parent').parent().hide();
+                $('td:nth-child(7):empty').parent().show();
+            });
+
+        });
+    </script>
 
 </head>
 <body>
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script type="text/javascript">alert("{{messages[-1]}}");</script>
-    {% endif %}
+{% if messages %}
+<script type="text/javascript">alert("{{messages[-1]}}");</script>
+{% endif %}
 {% endwith %}
 <!--login.html 에서 nav bar 제거 및 login section 높이 수정-->
 
@@ -87,7 +89,8 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink03" role="button"
+                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink03"
+                       role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">추가</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink03">
                         <li><a class="dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
@@ -109,7 +112,7 @@
 </nav>
 
 <main>
-    <section class="m-5">
+    <section class="m-3">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-md-5">
@@ -156,19 +159,19 @@
             </div>
         </div>
     </section>
-    <div class="invalid-table-nav d-flex my-3">
+    <div class="invalid-table-nav-container my-3">
+<!--        <div>-->
+<!--            &lt;!&ndash;버튼을 클릭하면, js로 amout값을 가져오고, 테이블 목록을 hidden처리해줌.&ndash;&gt;-->
+<!--            &lt;!&ndash;<span class="invalid-table-amount">amount: 개발ing~</span>&ndash;&gt;-->
+<!--        </div>-->
         <div>
-            <!--버튼을 클릭하면, js로 amout값을 가져오고, 테이블 목록을 hidden처리해줌.-->
-            <!--<span class="invalid-table-amount">amount: 개발ing~</span>-->
-        </div>
-        <div class="d-flex">
-            <input class="invalid-table-btn datepicker-btn mx-2" id="currentButton" type="button" value="현재"/>
-            <input class="invalid-table-btn datepicker-btn mx-2" id="entireButton" type="button" value="전체"/>
+            <input class="invalid-table-btn datepicker-btn mx-1" id="currentButton" type="button" value="현재"/>
+            <input class="invalid-table-btn datepicker-btn mx-1" id="entireButton" type="button" value="전체"/>
         </div>
 
     </div>
     <div class="invalid-table-container">
-        <table class="table invalid-table table-bordered table-striped table-hover">
+        <table id="filter" class="table invalid-table table-bordered table-hover">
             <thead>
             <th>번호</th>
             <th>바코드</th>
@@ -193,5 +196,12 @@
         </table>
     </div>
 </main>
+
+
+<script>
+    $(document).ready(function () {
+        $("#filter").tablesorter();
+    });
+</script>
 </body>
 </html>

@@ -11973,7 +11973,7 @@ textarea.form-control-lg {
 
 /*datepicker css*/
 .datepicker-calendar-container {
-    width: 80vw;
+    width: 72vw;
     margin: 4px auto;
     border: 1px solid #c0c0c0;
 }
@@ -12007,7 +12007,7 @@ textarea.form-control-lg {
 
 /*dailylist table css*/
 .daily-table-container {
-    padding: 5px;
+    padding: 0 5px;
     border: 1px solid black;
     width: 72vw;
     min-width: 1200px;
@@ -12049,7 +12049,7 @@ textarea.form-control-lg {
 /*inventory table css*/
 .inventory-table-container {
     border: 1px solid black;
-    width: 80vw;
+    width: 72vw;
     min-width: 1200px;
     margin: 0 auto;
     overflow: auto;
@@ -12081,7 +12081,7 @@ textarea.form-control-lg {
 }
 
 .all-engine-table td:nth-child(10){
-    width: 600px;
+    width: 300px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -12090,7 +12090,7 @@ textarea.form-control-lg {
 
 
 .edit-engine-table td:nth-child(9) {
-    width: 550px;
+    width: 220px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -12098,7 +12098,7 @@ textarea.form-control-lg {
 }
 
 .edit-output-engine-table td:nth-child(10) {
-    width: 450px;
+    width: 160px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -12242,23 +12242,31 @@ table > tbody > tr > th:first-child:before {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border: 1px solid #c0c0c0;
     height: 72vh;
-    width: 70vh;
+    width: 65vh;
     overflow: auto;
+    /*min-height: 500px;*/
+    /*min-width: 400px;*/
 }
 
 
 .mip-card {
     height: 40vh;
-    width: 70vh;
+    width: 65vh;
+    /*min-height: 500px;*/
+    /*min-width: 250px;*/
 }
 
 /*불량 엔진 화면*/
-.invalid-table-nav {
-    align-items: center;
-    height: 30px;
-    width: 80vw;
+.invalid-table-nav-container {
+    width: 72vw;
     margin: 0 auto;
 }
+/*.invalid-table-nav {*/
+/*    align-items: center;*/
+/*    height: 30px;*/
+/*    !*width: 72vw;*!*/
+/*    margin: 0 auto;*/
+/*}*/
 
 .invalid-table-btn {
     height: 40px;
@@ -12274,7 +12282,7 @@ table > tbody > tr > th:first-child:before {
 
 .invalid-table-container {
     border: 1px solid black;
-    width: 80vw;
+    width: 72vw;
     min-width: 1200px;
     margin: 0 auto;
     overflow-x: hidden;
@@ -12300,7 +12308,7 @@ table > tbody > tr > th:first-child:before {
 }
 
 .invalid-table td:nth-child(9) {
-    width: 700px;
+    width: 400px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
