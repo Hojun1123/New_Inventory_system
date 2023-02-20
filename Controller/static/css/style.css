@@ -12007,7 +12007,7 @@ textarea.form-control-lg {
 
 /*dailylist table css*/
 .daily-table-container {
-    padding: 5px;
+    padding: 0 5px;
     border: 1px solid black;
     width: 72vw;
     min-width: 1200px;
