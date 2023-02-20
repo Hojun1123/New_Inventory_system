@@ -77,10 +77,10 @@ def deleteProcess():
 
 @engineController.route("/setInvalidEngine", methods=["GET", "POST"])
 def setInvalidEngine():
-    table = addErrorEngine.getErrorEngineList()
-    if table == -1:
-        table = [["[ERROR] 데이터 베이스 오류"]]
     if request.method == 'GET':
+        table = addErrorEngine.getErrorEngineList()
+        if table == -1:
+            table = [["[ERROR] 데이터 베이스 오류"]]
         return render_template("/setInvalidEngine.html", table=table)
     else:
         eid = request.form.get('eid')
@@ -90,6 +90,9 @@ def setInvalidEngine():
             flash("[ERROR] 데이터 베이스 오류")
         elif result == -2 or result == 0:
             flash("[ERROR] 존재하지 않는 바코드입니다.")
+        table = addErrorEngine.getErrorEngineList()
+        if table == -1:
+            table = [["[ERROR] 데이터 베이스 오류"]]
         return render_template("/setInvalidEngine.html", table=table)
 
 ########################
