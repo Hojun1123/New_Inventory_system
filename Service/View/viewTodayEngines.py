@@ -5,7 +5,6 @@ from datetime import datetime
 def getTodayEngines():
     dt = datetime.now()
     today = dt.strftime("%Y%m%d")
-    print(today)
     inputEngines = en.EngineRepository('st', today)
     inputEngineList = []
     if inputEngines == -1:

@@ -22,11 +22,14 @@ def beforeRequest():
 @engineController.route("/addEngine", methods=['GET', 'POST'])
 def addEngine():
     if request.method == 'POST':
-        sucess, err = addEngines.inputEngine(request.files.getlist("file[]"))
-        if sucess == -1 and err == -1:
-            flash('파일에 비어있는 부분이 있습니다. 확인 후 다시 시도해주세요.')
-        else:
-            flash(f'입고성공 : {sucess} 중복엔진 : {err}')
+        sucess, err, blank = addEngines.inputEngine(request.files.getlist("file[]"))
+        #파일형식이 맞지 않는 오류처리
+        if sucess == -1 and err == -1 and blank == -1:
+            flash(f'선택한 파일이 형식에 맞지 않습니다. 다시 확인해 주세요.')
+        else: #오류가 나지 않았을때
+            if blank >= 1: #빈칸이 하나라도 있다면
+                flash(f'누락되어있는 정보가 {blank}건의 처리가 보류되었습니다. 파일에 오류가 있다면 수정 후 다시 시도해주세요.')
+            flash(f'입고성공 : {sucess} 중복엔진 : {err} 빈칸보류 : {blank}')
         return render_template("/inputEngine.html")
     else:
         return render_template("/inputEngine.html")
