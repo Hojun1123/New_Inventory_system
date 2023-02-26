@@ -12248,6 +12248,10 @@ table > tbody > tr > th:first-child:before {
     /*min-width: 400px;*/
 }
 
+.mip-table td:nth-child(n) {
+    width: 25%;
+}
+
 
 .mip-card {
     height: 40vh;
@@ -12255,6 +12259,7 @@ table > tbody > tr > th:first-child:before {
     /*min-height: 500px;*/
     /*min-width: 250px;*/
 }
+
 
 /*불량 엔진 화면*/
 .invalid-table-nav-container {

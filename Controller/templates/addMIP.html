@@ -14,9 +14,9 @@
 <body>
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script type="text/javascript">alert("{{messages[-1]}}");</script>
-    {% endif %}
+{% if messages %}
+<script type="text/javascript">alert("{{messages[-1]}}");</script>
+{% endif %}
 {% endwith %}
 
 <script>
@@ -25,6 +25,25 @@
             location.href = "/mip/deleteMIP?id=" + id;
         }
     }
+</script>
+
+<!--search JS-->
+<script>
+    $(document).ready(function () {
+
+        $("#mip-search").keyup(function () {
+
+            var k = $(this).val();
+
+            $("#board_table > tbody > tr").hide();
+
+            var MIP = $("#board_table > tbody > tr > td:nth-child(2):contains('" + k + "')");
+            var type = $("#board_table > tbody > tr > td:nth-child(3):contains('" + k + "')");
+
+            $(MIP).parent().show();
+            $(type).parent().show();
+        })
+    });
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
@@ -58,7 +77,8 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink03" role="button"
+                    <a class="nav-link dropdown-toggle current-page-text" href="#" id="navbarDarkDropdownMenuLink03"
+                       role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">추가</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink03">
                         <li><a class="dropdown-item" href="/mip/addMIP">MIP 추가</a></li>
@@ -82,7 +102,7 @@
 
 <section class="d-flex flex-wrap mt-5 addmip-section justify-content-center">
     <div class="mt-4 mip-card">
-        <div class="container">
+        <div class="container my-3">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-md-10">
                     <div class="card" style="border-radius: 1rem;">
@@ -120,30 +140,35 @@
         </div>
     </div>
 
-    <div class="mip-table-container">
-        <table class="mip-table table table-bordered table-striped table-hover">
-            <thead>
-            <th>번호</th>
-            <th>MIP</th>
-            <th>기종</th>
-            <th>삭제</th>
-            </thead>
-            <tbody>
-            {% for a in mipList %}
-            <tr>
-                <th scope="row"></th>
-                {% for b in a %}
-                <td>{{ b }}</td>
-                {% endfor %}
-                <td>
-                    <button onclick="askDelete('{{a[0]}}')" class="edit-btn">삭제</button>
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <div>
+        <div>
+            <input type="text" class="m-2" style="width:240px;" id="mip-search" placeholder="MIP, 기종 검색 (대소문자 구분)" autocomplete="off">
+        </div>
 
+        <div class="mip-table-container">
+            <table class="mip-table table table-bordered table-striped table-hover" id="board_table">
+                <thead>
+                <th>번호</th>
+                <th>MIP</th>
+                <th>기종</th>
+                <th>삭제</th>
+                </thead>
+                <tbody>
+                {% for a in mipList %}
+                <tr>
+                    <th scope="row"></th>
+                    {% for b in a %}
+                    <td>{{ b }}</td>
+                    {% endfor %}
+                    <td>
+                        <button onclick="askDelete('{{a[0]}}')" class="edit-btn">삭제</button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </section>
 </body>
