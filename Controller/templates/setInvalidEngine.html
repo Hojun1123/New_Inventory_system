@@ -167,6 +167,12 @@
         <div>
             <input class="invalid-table-btn datepicker-btn mx-1" id="currentButton" type="button" value="현재"/>
             <input class="invalid-table-btn datepicker-btn mx-1" id="entireButton" type="button" value="전체"/>
+            <input class="datepicker-btn mx-2" id="filter0" type="text" placeholder="바코드"
+                   style="width:60px;height:40px;"/>
+            <input class="datepicker-btn mx-2" id="filter1" type="text" placeholder="MIP"
+                   style="width:60px;height:40px;"/>
+            <input class="datepicker-btn mx-2" id="filter2" type="text" placeholder="기종"
+                   style="width:60px;height:40px;"/>
         </div>
 
     </div>
@@ -197,11 +203,12 @@
     </div>
 </main>
 
-
+<!-- 검색 기능 -->
 <script>
     $(document).ready(function () {
         $("#filter").tablesorter();
     });
 </script>
+<script src="../static/js/TableFilter.min.js" defer></script>
 </body>
 </html>
