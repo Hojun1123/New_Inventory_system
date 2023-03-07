@@ -28,7 +28,7 @@
     {% endif %}
 {% endwith %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
+<nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/view/todayEngines">SJA.inc</a>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
@@ -40,7 +40,7 @@
                     <a class="nav-link" href="/view/allEngines">기간별 조회</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="">재고 조회</a>
+                    <a class="nav-link" href="/view/allUnitsEngines">재고 조회</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/view/inventoryPayment">재고수불부</a>
@@ -84,7 +84,7 @@
 </nav>
 
 <!--datepicker-->
-<form action="/view/report" class="datepicker-calendar-container my-3" method="post">
+<form action="/view/report" class="datepicker-calendar-container my-3" method="post" style="min-width: 1200px;">
     <div class="d-flex flex-wrap my-2">
         <div class="input-group date datepicker-calendar">
             <input type="text" value="{{ startdate }}" class="form-control" name="startdate" value="{{ startdate }}"
@@ -101,7 +101,9 @@
                 <i class="glyphicon glyphicon-calendar"></i>
             </span>
         </div>
-        <button type="submit" class="datepicker-btn" onclick="return CheckDate()">조회</button>
+<!--        <div class="d-flex" style="margin-right: 10px;">-->
+            <button type="submit" class="datepicker-btn" onclick="return CheckDate()">조회</button>
+<!--        </div>-->
         <div id="printDate"></div>
     </div>
 </form>

@@ -12088,6 +12088,13 @@ textarea.form-control-lg {
     display: inline-block;
 }
 
+.all-engine-table2 td:nth-child(12){
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
 
 .edit-engine-table td:nth-child(9) {
     width: 220px;
@@ -12166,6 +12173,7 @@ textarea.form-control-lg {
 .report-table-wrapper {
     width: 80vw;
     height: 80vh;
+    min-width: 1200px;
     margin: 20px auto;
     overflow: auto;
     border: 2px solid #9a9a9a;

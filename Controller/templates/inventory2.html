@@ -19,38 +19,40 @@
     <script src="../static/js/javascript.js"></script>
     <!--tablesorter-->
     <script src="../static/js/jquery.tablesorter.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            //전체 버튼
-            $("#entireButton").on("click", function () {
-                $('td:nth-child(7):empty').parent().show();
-                $('td:nth-child(7):parent').parent().show();
-                $('tr:nth-child(even)').css({"background": "white"});
-                $("tr:visible").each(function (index) {
-                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");
-                });
-            });
-            //재고 버튼
-            $("#currentButton").on("click", function () {
-                $('td:nth-child(7):parent').parent().hide();
-                $('td:nth-child(7):empty').parent().show();
-                $('tr:nth-child(even)').css({"background": "white"});
-                $("tr:visible").each(function (index) {
-                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");
-                });
-            });
-            //출고 버튼
-            $("#releasedButton").on("click", function () {
-                $('td:nth-child(7):empty').parent().hide();
-                $('td:nth-child(7):parent').parent().show();
-                $('tr:nth-child(even)').css({"background": "white"});
-                $("tr:visible").each(function (index) {
-                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");
-                });
-            });
+<!--    -->
+<!--    <script>-->
+<!--        $(document).ready(function () {-->
+<!--            //전체 버튼-->
+<!--            $("#entireButton").on("click", function () {-->
+<!--                $('td:nth-child(7):empty').parent().show();-->
+<!--                $('td:nth-child(7):parent').parent().show();-->
+<!--                $('tr:nth-child(even)').css({"background": "white"});-->
+<!--                $("tr:visible").each(function (index) {-->
+<!--                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");-->
+<!--                });-->
+<!--            });-->
+<!--            //재고 버튼-->
+<!--            $("#currentButton").on("click", function () {-->
+<!--                $('td:nth-child(7):parent').parent().hide();-->
+<!--                $('td:nth-child(7):empty').parent().show();-->
+<!--                $('tr:nth-child(even)').css({"background": "white"});-->
+<!--                $("tr:visible").each(function (index) {-->
+<!--                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");-->
+<!--                });-->
+<!--            });-->
+<!--            //출고 버튼-->
+<!--            $("#releasedButton").on("click", function () {-->
+<!--                $('td:nth-child(7):empty').parent().hide();-->
+<!--                $('td:nth-child(7):parent').parent().show();-->
+<!--                $('tr:nth-child(even)').css({"background": "white"});-->
+<!--                $("tr:visible").each(function (index) {-->
+<!--                    $(this).css("background-color", !!(index & 1) ? "rgba(0,0,0,.1)" : "rgba(0,0,0,0)");-->
+<!--                });-->
+<!--            });-->
 
-        });
-    </script>
+<!--        });-->
+<!--    </script>-->
+
     <!-- 테이블 수정시 표시 -->
     <script>
         $(document).ready(function () {
@@ -91,7 +93,7 @@
 {% endwith %}
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-custom">
+<nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/view/todayEngines">SJA.inc</a>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
@@ -100,10 +102,10 @@
                     <a class="nav-link" href="/view/report">기간별 통계</a>
                 </li>
                 <li class="nav-item">
-                    <a class="current-page-text nav-link" href="/view/allEngines">기간별 조회</a>
+                    <a class="nav-link" href="/view/allEngines">기간별 조회</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="">재고 조회</a>
+                    <a class="current-page-text nav-link" href="/view/allUnitsEngines">재고 조회</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/view/inventoryPayment">재고수불부</a>
@@ -166,37 +168,37 @@
         </div>
         <button type="submit" class="datepicker-btn" onclick="return CheckDate()">조회</button>
         <div class="searchFilter d-flex" style="margin-left : auto; margin-right: 10px;">
-            <input class="datepicker-btn mx-2" id="filter0" type="text" placeholder="바코드"
+            <input class="datepicker-btn mx-2" id="filter0" type="text" placeholder="기종"
                    style="width:90px;"/>
             <input class="datepicker-btn mx-2" id="filter1" type="text" placeholder="MIP"
                    style="width:90px;"/>
-            <input class="datepicker-btn mx-2" id="filter2" type="text" placeholder="기종"
-                   style="width:90px;"/>
+<!--            <input class="datepicker-btn mx-2" id="filter2" type="text" placeholder="기종"-->
+<!--                   style="width:90px;"/>-->
         </div>
         <div class="d-flex" style="margin-left : auto; margin-right: 10px;">
-            <input class="datepicker-btn mx-2 table-btn" id="entireButton" type="button" value="전체"/>
-            <input class="datepicker-btn mx-2 table-btn" id="currentButton" type="button" value="재고"/>
-            <input class="datepicker-btn mx-2 table-btn" id="releasedButton" type="button" value="출고"/>
+<!--            <input class="datepicker-btn mx-2 table-btn" id="entireButton" type="button" value="전체"/>-->
+<!--            <input class="datepicker-btn mx-2 table-btn" id="currentButton" type="button" value="재고"/>-->
+<!--            <input class="datepicker-btn mx-2 table-btn" id="releasedButton" type="button" value="출고"/>-->
         </div>
     </div>
 </form>
 
 <div class="m-4">
     <div class="inventory-table-container">
-        <table id="filter" class="table inventory-table table-bordered table-hover all-engine-table">
+        <table id="filter" class="table inventory-table table-bordered table-hover all-engine-table2">
             <thead>
             <th col-index=1 scope="col">번호</th>
             <th col-index=2 scope="col">기종</th>
             <th col-index=3 scope="col">MIP</th>
-            <th col-index=4 scope="col">EN1</th>
-            <th col-index=5 scope="col">EN2</th>
-            <th col-index=6 scope="col">EN3</th>
-            <th col-index=7 scope="col">EN4</th>
-            <th col-index=8 scope="col">1</th>
-            <th col-index=9 scope="col">일</th>
-            <th col-index=10 scope="col">2</th>
-            <th col-index=11 scope="col">2</th>
-            <th col-index=12 scope="col">2</th>
+            <th col-index=4 scope="col">ENG1</th>
+            <th col-index=5 scope="col">ENG2</th>
+            <th col-index=6 scope="col">ENG3</th>
+            <th col-index=7 scope="col">ENG4</th>
+            <th col-index=8 scope="col">입고일</th>
+            <th col-index=9 scope="col">포장일</th>
+            <th col-index=10 scope="col">위치</th>
+            <th col-index=11 scope="col">에러</th>
+            <th col-index=12 scope="col">비고</th>
             </thead>
             <tbody>
             {% for row in table %}
