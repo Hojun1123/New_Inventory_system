@@ -90,7 +90,9 @@ def getAllUnitsEngines(start, end):
             result[k][9] += errorFlag
             result[k][10] += (exp+' ')
             cnt = cnt + 1
+
     return result.values()
+
 #    for i in oenData:
 #        barcode, mip, types, inputDate, packingDate, outputDate, errorFlag, exp, destination = i
 #        errorFlag = "불량엔진" if errorFlag > 0 else ""
