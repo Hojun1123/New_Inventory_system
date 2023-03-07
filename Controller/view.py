@@ -61,3 +61,22 @@ def viewInventoryPayment():
             return "<script>alert(\'날짜를 선택해주세요\')\nwindow.history.back()</script>"
         invenList = inventoryPayment.paymentListPost(startDate, endDate)
         return render_template("/inventoryPayment.html", paymentList=invenList)
+
+@viewController.route("/allUnitsEngines", methods=['GET', 'POST'])
+def allUnitsEngines():
+    if request.method == 'GET':
+        table = viewAllEngines.getAllUnitsEngines("0000:00:00", "9000:00:00")
+        if table == -1:
+            table = "[ERROR] 데이터 베이스 연결 오류"
+        elif table == -2:
+            table = "[ERROR] 올바르지 않은 날짜 형식입니다."
+        return render_template("/inventory2.html", table=table)
+    else:
+        startdate = request.form.get("startdate")
+        enddate = request.form.get("enddate")
+        table = viewAllEngines.getAllUnitsEngines(startdate, enddate)
+        if table == -1:
+            table = "[ERROR] 데이터 베이스 연결 오류"
+        elif table == -2:
+            table = "[ERROR] 올바르지 않은 날짜 형식입니다."
+        return render_template("/inventory2.html", table=table, startdate=str(startdate), enddate=str(enddate))
